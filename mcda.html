@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Multi-Criteria Decision Analysis (MCDA)</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background-color: #f4f4f9;
+
+            color: #333;
+
+            margin: 0;
+
+            padding: 20px;
+
+        }
+
+        h1 {
+
+            text-align: center;
+
+            color: #2c3e50;
+
+        }
+
+        .container {
+
+            max-width: 800px;
+
+            margin: 0 auto;
+
+        }
+
+        .option-block {
+
+            background-color: #ffffff;
+
+            border-radius: 8px;
+
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+            margin-bottom: 20px;
+
+            padding: 20px;
+
+        }
+
+        h2 {
+
+            color: #34495e;
+
+        }
+
+        ul {
+
+            list-style-type: none;
+
+            padding-left: 0;
+
+        }
+
+        li {
+
+            background-color: #ecf0f1;
+
+            margin-bottom: 10px;
+
+            padding: 10px;
+
+            border-radius: 4px;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+ 
+
+<div class="container">
+
+    <h1>Multi-Criteria Decision Analysis (MCDA)</h1>
+
+    <div class="option-block">
+
+        <h2>Description:</h2>
+
+        <p>MCDA is a decision-making framework that evaluates multiple conflicting criteria in decision making. This method is highly effective when choosing the organizational structure as it allows you to weigh different factors such as cost, efficiency, flexibility, employee satisfaction, and strategic alignment.</p>
+
+    </div>
+
+ 
+
+    <div class="option-block">
+
+        <h2>Application:</h2>
+
+        <p>By assigning weights to each criterion based on their importance and scoring each COA against these criteria, you can derive a ranking or score for each organizational model.</p>
+
+    </div>
+
+ 
+
+    <div class="option-block">
+
+        <h2>Criteria Weights for Evaluation:</h2>
+
+        <ul>
+
+            <li>Control and Influence: Importance of having control over operations and influence in decision-making processes. MEDIUM-HIGH -> 4</li>
+
+            <li>Certification Experience: The value of having existing experience with relevant aircraft certifications and standards (DO-160, DO-254, DO-178). MEDIUM-HIGH -> 4</li>
+
+            <li>Liability Management: Importance of minimizing personal liability for team members. LOW -> 1</li>
+
+            <li>Cost and Administrative Relief: Ease of administrative tasks, costly administration and support provided by the company structure. MEDIUM -> 3</li>
+
+            <li>Project Acquisition: Ability to secure projects and work opportunities. MEDIUM-LOW -> 2</li>
+
+            <li>Trust and Reliability: Trustworthiness and reliability of partners or associated companies. HIGH -> 5</li>
+
+            <li>Location Advantage: Strategic advantage based on location, particularly in relation to Transport Canada. MEDIUM-LOW -> 2</li>
+
+        </ul>
+
+    </div>
+
+ 
+
+    <div class="option-block">
+
+        <h2>Option Analysis for DAO Creation:</h2>
+
+ 
+
+        <h3>Option 1: DAO under AeroDonia Company</h3>
+
+        <ul>
+
+            <li>Control and Influence (Score = 3): Limited influence due to AeroDonia's desire to appoint their own director, but some control over daily operations.</li>
+
+            <li>Certification Experience (Score = 2): Limited experience, primarily in DO-160.</li>
+
+            <li>Liability Management (Score = 3): Liability rests on AeroDonia.</li>
+
+            <li>Cost and Administrative Relief (Score = 4): Payroll handled by AeroDonia, providing admin relief.</li>
+
+            <li>Project Acquisition (Score = 3): Some access to projects via AeroDonia's contacts.</li>
+
+            <li>Trust and Reliability (Score = 2): Issues with trustworthiness and reliability of AeroDonia engineers.</li>
+
+            <li>Location Advantage (Score = 4): Proximity to Transport Canada office in Montreal.</li>
+
+        </ul>
+
+        <p>Total Score for Option 1 = 59</p>
+
+ 
+
+        <h3>Option 2: DAO under a large company (i.e., McDermott)</h3>
+
+        <ul>
+
+            <li>Control and Influence (Score = 2): Less control over operations than a small company.</li>
+
+            <li>Certification Experience (Score = 3): Some experience through Tim's involvement with DO-160.</li>
+
+            <li>Liability Management (Score = 5): Liabilities rest on McDermott.</li>
+
+            <li>Cost and Administrative Relief (Score = 4): Large company structure provides administrative support.</li>
+
+            <li>Project Acquisition (Score = 5): Assured work due to McDermott's existing business.</li>
+
+            <li>Trust and Reliability (Score = 5): Reliable partnerships, especially with Tim involved.</li>
+
+            <li>Location Advantage (Score = 1): Potential location issues since it's based in Australia.</li>
+
+        </ul>
+
+        <p>Total Score for Option 2 = 74</p>
+
+ 
+
+        <h3>Option 3: DAO on our own</h3>
+
+        <ul>
+
+            <li>Control and Influence (Score = 5): Full control over operations and processes.</li>
+
+            <li>Certification Experience (Score = 1): No direct experience but access through subcontracting.</li>
+
+            <li>Liability Management (Score = 1): Full liability on team members.</li>
+
+            <li>Cost and Administrative Relief (Score = 1): No existing structure; costly administration required.</li>
+
+            <li>Project Acquisition (Score = 1): Need to invest time and money in finding projects.</li>
+
+            <li>Trust & Reliability (Score = 5): H Antar is reliable as the head of DAO.</li>
+
+            <li>Location Advantage (Score = 4): Based in Quebec, with good relationships with regional engineers at TC.</li>
+
+        </ul>
+
+        <p>Total Score for Option 3 = 63</p>
+
+ 
+
+    </div>
+
+ 
+
+    <div class="option-block">
+
+        <h2>Best Option: Option 2 - DAO under a large company (i.e., McDermott)</h2>
+
+        <ul>
+
+            <li><strong>Highest Total Score:</strong> 74</li>
+
+            <li><strong>Advantages:</strong></li>
+
+                <ul>
+
+                    <li>Reliable partnerships and assured work opportunities.</li>
+
+                    <li>Liability rests on McDermott, reducing personal risk.</li>
+
+                    <li>Strong administrative support from the large company structure.</li>
+
+                </ul>
+
+            <li><strong>Disadvantages:</strong></li>
+
+                <ul>
+
+                    <li>Potential location and interest issues since it's based in Australia.</li>
+
+                </ul>
+
+        </ul>
+
+ 
+
+        <h2>Runner-Up: Option 3 - DAO on our own</h2>
+
+        <ul>
+
+            <li><strong>Total Score:</strong> 63</li>
+
+            <li><strong>Advantages:</strong></li>
+
+                <ul>
+
+                    <li>Full control over operations and processes.</li>
+
+                    <li>Trustworthy leadership with H Antar at the helm.</li>
+
+                </ul>
+
+            <li><strong>Disadvantages:</strong></li>
+
+                <ul>
+
+                    <li>High liability and administrative costs.</li>
+
+                    <li>Lack of direct certification experience.</li>
+
+                </ul>
+
+        </ul>
+
+ 
+
+        <h2>Worst Option: Option 1 - DAO under AeroDonia Company</h2>
+
+        <ul>
+
+            <li><strong>Total Score:</strong> 59</li>
+
+            <li><strong>Disadvantages outweigh advantages due to issues with trustworthiness and limited certification experience.</strong></li>
+
+        </ul>
+
+ 
+
+    </div>
+
+ 
+
+</div>
+
+ 
+
+</body>
+
+</html>
+
