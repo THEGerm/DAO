@@ -85,39 +85,6 @@
 
     <p style="text-align:center;">❤️ We’re going to laugh, celebrate, and sing our hearts out! 🎤💃🕺</p>
 
-<h2>⏳ Countdown to the Big Day</h2>
-<div id="countdown" style="font-size: 1.5em; font-weight: bold;"></div>
-
-
-
-
-<h2>💒 Countdown to May 4th!</h2>
-<div id="countdown" style="font-size: 1.8em; color: #4CAF50; margin: 20px 0;"></div>
-
-<script>
-  function updateCountdown() {
-    const eventDate = new Date("2025-05-04T15:00:00").getTime();
-    const now = new Date().getTime();
-    const diff = eventDate - now;
-
-    if (diff <= 0) {
-      document.getElementById("countdown").innerHTML = "🎉 It's the big day!";
-      return;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-    document.getElementById("countdown").innerHTML =
-      'days days,{hours} hours, minutes minutes,{seconds} seconds 💖';
-  }
-
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
-</script>
-
 
 </body>
 </html>
