@@ -88,28 +88,36 @@
 <h2>⏳ Countdown to the Big Day</h2>
 <div id="countdown" style="font-size: 1.5em; font-weight: bold;"></div>
 
+
+
+<h2>⏳ Countdown to the Big Day</h2>
+<div id="countdown" style="font-size: 1.5em; font-weight: bold;"></div>
+
 <script>
-  const countdown = document.getElementById("countdown");
-  const weddingDate = new Date("May 4, 2025 15:00:00").getTime();
+  document.addEventListener("DOMContentLoaded", function () {
+    const countdown = document.getElementById("countdown");
+    const weddingDate = new Date("May 4, 2025 15:00:00").getTime();
 
-  const timer = setInterval(() => 
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
 
-    if (distance < 0) 
-      clearInterval(timer);
-      countdown.innerHTML = "💍 It's wedding time!";
-      return;
-    
+      if (distance < 0) {
+        clearInterval(timer);
+        countdown.innerHTML = "💍 It's wedding time!";
+        return;
+      }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hrs = Math.floor((distance 
-    const mins = Math.floor((distance 
-    const secs = Math.floor((distance 
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hrs = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((distance % (1000 * 60)) / 1000);
 
-    countdown.innerHTML = `{days}d hrsh{mins}m ${secs}s left 💕`;
-  }, 1000);
+      countdown.innerHTML = `daysd{hrs}h minsm{secs}s left 💕`;
+    }, 1000);
+  });
 </script>
+
 
 
 </body>
