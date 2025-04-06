@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wedding Plan — May the 4th Be With Us!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff8f0;
+            color: #333;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            color: #d63384;
+            text-align: center;
+        }
+        h2 {
+            color: #0077cc;
+            margin-top: 40px;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        li::before {
+            content: "💍 ";
+        }
+        .done {
+            text-decoration: line-through;
+            color: gray;
+        }
+        .urgent {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>💖 Wedding Plan — May the 4th Be With Us!</h1>
+    <p><strong>Wedding Date:</strong> Saturday, May 4, 2025</p>
+    <p><strong>Theme:</strong> Simple wedding, good food, karaoke party! 🎤</p>
+
+    <h2>🗓️ Week 1 (Apr 6–13) — Lock the foundations</h2>
+    <ul>
+        <li>✔️ Finalize guest count</li>
+        <li class="urgent">📍 Pick ceremony location (Gatineau Park? Rideau Hall?)</li>
+        <li>📋 Confirm restaurant seating (1 table adults / 1 table kids?)</li>
+        <li>🕺 Groom needs to get his outfit</li>
+        <li>💇‍♀️ Hebba: book hair/makeup if needed</li>
+        <li>💍 Buy or pick up rings</li>
+    </ul>
+
+    <h2>🎯 Week 2 (Apr 14–20) — Details & vibes</h2>
+    <ul>
+        <li>💌 Write vows</li>
+        <li>🎤 Reserve karaoke spot</li>
+        <li>🛏️ Confirm hotel/overnight plan if needed</li>
+        <li>👗 Finish outfit planning for Hebba’s kids</li>
+        <li>🌙 Look into mini honeymoon ideas (Nordik? Cozy hotel?)</li>
+        <li>☔ Plan for rain (backup ceremony spot?)</li>
+    </ul>
+
+    <h2>📣 Week 3 (Apr 21–27) — Communicate & prep</h2>
+    <ul>
+        <li>📲 Send schedule to guests</li>
+        <li>🙋‍♂️ Confirm everyone’s roles</li>
+        <li>🎁 Buy thank-you cards or small gifts</li>
+        <li>📸 Pick a few photo spots</li>
+        <li>🎶 Prep karaoke playlist</li>
+    </ul>
+
+    <h2>🎉 Week 4 (Apr 28–May 3) — Final touches</h2>
+    <ul>
+        <li>💇‍♂️ Groom haircut (optional 😄)</li>
+        <li>📞 Confirm dinner menu</li>
+        <li>🧰 Pack an emergency kit (safety pins, tissues, Advil?)</li>
+        <li>📜 Practice vows</li>
+        <li>✅ Double-confirm all bookings</li>
+        <li>🧘‍♀️ Chill and enjoy the countdown!</li>
+    </ul>
+
+    <p style="text-align:center;">❤️ We’re going to laugh, celebrate, and sing our hearts out! 🎤💃🕺</p>
+
+<h2>⏳ Countdown to the Big Day</h2>
+<div id="countdown" style="font-size: 1.5em; font-weight: bold;"></div>
+
+<script>
+  const countdown = document.getElementById("countdown");
+  const weddingDate = new Date("May 4, 2025 15:00:00").getTime();
+
+  const timer = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    if (distance < 0) {
+      clearInterval(timer);
+      countdown.innerHTML = "💍 It's wedding time!";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hrs = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdown.innerHTML = `daysd{hrs}h minsm{secs}s left 💕`;
+  }, 1000);
+</script>
+
+</body>
+</html>
