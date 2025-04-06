@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wedding Schedule & Responsibilities</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff0f5;
+      color: #333;
+      padding: 20px;
+    }
+    h1 {
+      color: #d63384;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #d63384;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f8d7da;
+    }
+    tr:nth-child(even) {
+      background-color: #fce4ec;
+    }
+  </style>
+</head>
+<body>
+
+<h1>💍 Wedding Day - Schedule & Responsibility Matrix</h1>
+
+<table>
+  <tr>
+    <th>Time</th>
+    <th>Event</th>
+    <th>Location</th>
+    <th>Responsible</th>
+  </tr>
+  <tr>
+    <td>14:00</td>
+    <td>Final Touches & Photos</td>
+    <td>Outdoor Ceremony Spot (TBD)</td>
+    <td>Everyone</td>
+  </tr>
+  <tr>
+    <td>15:00</td>
+    <td>Wedding Ceremony</td>
+    <td>Gatineau/Ottawa Park (TBD)</td>
+    <td>Martin (celebrant)</td>
+  </tr>
+  <tr>
+    <td>16:30</td>
+    <td>Photos / Walk / Chill Time</td>
+    <td>Nearby park</td>
+    <td>Everyone</td>
+  </tr>
+  <tr>
+    <td>18:00</td>
+    <td>Dinner at Sterling Steakhouse</td>
+    <td>Sterling, Gatineau</td>
+    <td>Hebba & Louis-David</td>
+  </tr>
+  <tr>
+    <td>20:30</td>
+    <td>Karaoke Fun 🎤</td>
+    <td>Ottawa Karaoke Spot (TBD)</td>
+    <td>Louis-David (booking), Martin (mic hype)</td>
+  </tr>
+</table>
+
+<h2 style="margin-top:40px;">✨ Notes</h2>
+<ul>
+  <li>Each kid will have a buddy or parent assigned for transitions.</li>
+  <li>Minimal decor, no vendors. Keep it simple and joyful!</li>
+  <li>Dress: Comfortable but festive.</li>
+</ul>
+
+</body>
+</html>
