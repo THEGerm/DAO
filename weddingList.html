@@ -2,92 +2,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Wedding Guest List</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fff;
-      color: #333;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-      color: #ba55d3;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      border: 1px solid #ba55d3;
-      padding: 8px;
-      text-align: left;
-    }
-    th {
-      background-color: #f3e5f5;
-    }
-    tr:nth-child(even) {
-      background-color: #faf5fc;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Wedding Guest List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f6f2;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #5a2a83;
+            text-align: center;
+        }
+        iframe {
+            border: none;
+            display: block;
+            margin: 0 auto;
+        }
+        p {
+            text-align: center;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
 
-<h1>💒 Wedding Attendee List</h1>
+    <h1>👰🤵 Wedding Guest List & RSVP Tracker</h1>
+    <p>Editable Google Sheet below – includes RSVP status, notes, and invitation tracking.</p>
 
-<table>
-  <tr>
-    <th>#</th>
-    <th>Name</th>
-    <th>Relation</th>
-    <th>Comments</th>
-    <th>RSVP</th>
-    <th>Invitation Sent</th>
-  </tr>
-
-  <!-- Hebba's side -->
-  <tr><td>1</td><td>Hebba</td><td>Bride</td><td></td><td>✅ Yes</td><td>✅</td></tr>
-  <tr><td>2</td><td>Yahia</td><td>Father of the Bride</td><td></td><td>✅ Yes</td><td></td></tr>
-  <tr><td>3</td><td>Amal</td><td>Mother of the Bride</td><td>(Amoura)</td><td>✅ Yes</td><td></td></tr>
-  <tr><td>4</td><td>Ahmad</td><td>Brother</td><td></td><td>✅ Yes</td><td></td></tr>
-
-<tr><td>5</td><td>Defne</td><td>Ahmad's partner</td><td></td><td>✅ Yes</td><td></td></tr>
-  <tr><td>6</td><td>Yusuf</td><td>Brother</td><td></td><td>✅ Yes</td><td></td></tr>
-  <tr><td>7</td><td>Masa</td><td>Yusuf's Partner</td><td></td><td>✅ Yes</td><td></td></tr>
-  <tr><td>8</td><td>Amanie</td><td>Sister</td><td></td><td></td><td></td></tr>
-  <tr><td>9</td><td>Majid</td><td>Amanie’s husband</td><td></td><td></td><td></td></tr>
-  <tr><td>10</td><td>Kid 1</td><td>Child of Amanie & Majid</td><td></td><td></td><td></td></tr>
-  <tr><td>11</td><td>Kid 2</td><td>Child of Amanie & Majid</td><td></td><td></td><td></td></tr>
-  <tr><td>12</td><td>Kid 3</td><td>Child of Amanie & Majid</td><td></td><td></td><td></td></tr>
-  <tr><td>13</td><td>Zacharia</td><td>Hebba’s son</td><td>Ring bearer</td><td></td><td></td></tr>
-  <tr><td>14</td><td>Safiya</td><td>Hebba’s daughter</td><td>Flower girl</td><td></td><td></td></tr>
-  <tr><td>15</td><td>Mariam</td><td>Hebba’s daughter</td><td>No role yet</td><td></td><td></td></tr>
-  <tr><td>16</td><td>Ali</td><td>Hebba’s son</td><td>Might not join</td><td></td><td></td></tr>
-
-  <!-- Groom's side -->
-  <tr><td>17</td><td>Louis-David</td><td>Groom</td><td></td><td>✅ Yes</td><td>✅</td></tr>
-  
-<tr><td>18</td><td>Michel</td><td>Father of the Groom</td><td></td><td></td><td></td></tr>
-  <tr><td>19</td><td>Lyn</td><td>Michel's wife</td><td></td><td></td><td></td></tr>
-  <tr><td>20</td><td>Philip</td><td>Lyn’s son</td><td></td><td></td><td></td></tr>
-  <tr><td>21</td><td>Xavier</td><td>Philip’s son</td><td></td><td></td><td></td></tr>
-  <tr><td>22</td><td>Elodie</td><td>Philip’s daughter</td><td></td><td></td><td></td></tr>
-  <tr><td>23</td><td>Louise</td><td>Mother of the Groom</td><td></td><td></td><td></td></tr>
-  <tr><td>24</td><td>Pierre</td><td>Louise’s partner</td><td></td><td></td><td></td></tr>
-  <tr><td>25</td><td>Camille</td><td>Sister</td><td></td><td></td><td></td></tr>
-  <tr><td>26</td><td>PO</td><td>Camille's partner</td><td>Full name TBD</td><td></td><td></td></tr>
-  <tr><td>27</td><td>Léa</td><td>Groom’s daughter</td><td>No role yet</td><td></td><td></td></tr>
-  <tr><td>28</td><td>Sophia</td><td>Groom’s daughter</td><td>Flower girl</td><td></td><td></td></tr>
-
-  <!-- Friends -->
-  <tr><td>29</td><td>Martin</td><td>Friend & Celebrant</td><td></td><td>✅ Yes</td><td>✅</td></tr>
-
-  <!-- Maybes -->
-  <tr><td>30</td><td>+ Maybe Guests</td><td>Friends / Extras</td><td>Estimate only</td><td></td><td></td></tr>
-</table>
+    <iframe src="https://docs.google.com/spreadsheets/d/1-pPUPxx6X7rdAQrQZOxb74rxMgfcb7JO2z21-LN2xw0/edit?usp=drivesdk&embedded=true" width="100%" height="700"></iframe>
 
 </body>
 </html>
-
