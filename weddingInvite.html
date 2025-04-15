@@ -38,17 +38,43 @@
             font-size: 1.4em;
             color: #ff6347;
         }
-        .footer {
+        .schedule {
+            margin-top: 30px;
+            text-align: left;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+        }
+        .schedule th, .schedule td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .schedule th {
+            background-color: #ff7f50;
+            color: white;
+        }
+        .pink-dress {
+            background-color: #f8c7d4;
+        }
+        .blue-dress {
+            background-color: #b4c8e7;
+        }
+        .photo {
+            margin-top: 30px;
+            width: 60%;
+            height: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        footer {
             font-size: 0.9em;
             text-align: center;
             padding: 20px;
             background-color: #ff7f50;
             color: white;
-        }
-        a {
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
         }
     </style>
 </head>
@@ -64,15 +90,70 @@
     <p>We are excited to share this special moment with you!</p>
     <p class="date">Saturday, 4th of May 2025</p>
     <p>Celebrating love, joy, and a lifetime together.</p>
-
     <p>Wedding Ceremony at 3:00 PM</p>
     <p>Location: Outdoor venue in Ottawa/Gatineau (Lac Leamy, Gatineau Park, City Park, or Rideau Hall - To be confirmed)</p>
     <p>Dinner at 6:00 PM</p>
     <p>Sterling Steakhouse, Gatineau</p>
-    <p>We can’t wait to celebrate with you!</p>
+
+    <img src="/PXL_20250202_062349631.jpg" alt="Couple Photo" class="photo">
+
+    <h3>Event Schedule</h3>
+    <table class="schedule">
+        <tr>
+            <th>Time</th>
+            <th>Event</th>
+            <th>Location</th>
+        </tr>
+        <tr class="pink-dress">
+            <td>14:00 - 14:30</td>
+            <td>Guest Arrival</td>
+            <td>Aviation and Space Museum</td>
+        </tr>
+        <tr class="pink-dress">
+            <td>14:30</td>
+            <td>Wedding Ceremony Start 💒</td>
+            <td>Aviation and Space Museum</td>
+        </tr>
+        <tr class="pink-dress">
+            <td>14:45</td>
+            <td>Meet in Museum Lobby for Cessna Flights ✈️</td>
+            <td>Aviation and Space Museum</td>
+        </tr>
+        <tr class="pink-dress">
+            <td>15:00 - 16:30</td>
+            <td>Cessna Flights</td>
+            <td>Aviation and Space Museum</td>
+        </tr>
+        <tr class="pink-dress">
+            <td>15:00</td>
+            <td>Wedding Flight 🚁</td>
+            <td>Above Ottawa</td>
+        </tr>
+        <tr class="pink-dress">
+            <td>16:30 - 17:00</td>
+            <td>Photos & Chill Time 📸 (Pink Dress)</td>
+            <td>Aviation and Space Museum, Rideau Hall</td>
+        </tr>
+        <tr class="blue-dress">
+            <td>17:00 - 18:00</td>
+            <td>Photos & Chill Time 📸 (Blue Dress)</td>
+            <td>Rideau Hall, Lac Leamy, Gatineau River (in Front of Sterling)</td>
+        </tr>
+        <tr class="blue-dress">
+            <td>18:00 - 20:00</td>
+            <td>Dinner 🍽️</td>
+            <td>Sterling Steakhouse, Gatineau</td>
+        </tr>
+        <tr class="blue-dress">
+            <td>20:30</td>
+            <td>Karaoke Fun 🎤🎶</td>
+            <td>VIP Karaoke</td>
+        </tr>
+    </table>
+
 </section>
 
-<footer class="footer">
+<footer>
     <p>For further details or inquiries, contact us at: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
 </footer>
 
