@@ -2,101 +2,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Wedding Schedule & Responsibilities</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fff0f5;
-      color: #333;
-      padding: 20px;
-    }
-    h1 {
-      color: #d63384;
-      text-align: center;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      border: 1px solid #d63384;
-      padding: 10px;
-      text-align: left;
-    }
-    th {
-      background-color: #f8d7da;
-    }
-    tr:nth-child(even) {
-      background-color: #fce4ec;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Wedding Schedule & Guest List</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            color: #d63384;
+            text-align: center;
+            font-size: 2.5em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #d63384;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8d7da;
+        }
+        tr:nth-child(even) {
+            background-color: #d0e7ff; /* Pale blue */
+        }
+        tr:nth-child(odd) {
+            background-color: #b0d4ff; /* Darker blue */
+        }
+        .pink-dress {
+            background-color: #fce4ec; /* Pink for Wedding Ceremony */
+        }
+        .blue-dress {
+            background-color: #b0d4ff; /* Blue for Dinner and Karaoke */
+        }
+    </style>
 </head>
 <body>
-
-<h1>💍 Wedding Day - Schedule & Responsibility Matrix</h1>
-
+<h1>💍 Wedding Day - Schedule & Guest List</h1>
 <table>
-  <tr>
-    <th>Time</th>
-    <th>Event</th>
-    <th>Location</th>
-    <th>Responsible</th>
-  </tr>
-  <tr>
-    <td>14:00 - 14:30</td>
-    <td>Guest Arrival</td>
-    <td>Aviation and Space Museum</td>
-    <td>Everyone</td>
-  </tr>
-  <tr>
-    <td>14:30</td>
-    <td>Wedding Ceremony</td>
-    <td>Gatineau/Ottawa Park (TBD)</td>
-    <td>Martin (celebrant)</td>
-  </tr>
-  <tr>
-    <td>15:00 - 16:30</td>
-    <td>Cessna Flights</td>
-    <td>Aviation and Space Museum</td>
-    <td>Martin (coordinating)</td>
-  </tr>
-  <tr>
-<td>15:00</td>
-    <td>Wedding Flight</td>
-    <td>Above Ottawa</td>
-    <td>Everyone</td>
-  </tr>
-  <tr>
-    <td>16:30 - 18:00</td>
-    <td>Photos & Chill Time</td>
-    <td>Lac Leamy / Canadian Museum of History</td>
-    <td>Everyone</td>
-  </tr>
-  <tr>
-    <td>18:00 - 20:00</td>
-    <td>Dinner</td>
-    <td>Sterling Steakhouse, Gatineau</td>
-    <td>Hebba & Louis-David</td>
-  </tr>
-  <tr>
-    <td>20:30</td>
-    <td>Karaoke Fun 🎤</td>
-    <td>VIP Karaoke Spot (TBD)</td>
-    <td>Louis-David (booking), Martin (mic hype)</td>
-  </tr>
-</table>
-
-<h2 style="margin-top:40px;">✨ Notes</h2>
-<ul>
-  <li>Each kid will have a buddy or parent assigned for transitions.</li>
-  <li>Minimal decor, no vendors. Keep it simple and joyful!</li>
-  <li>Dress: Comfortable but festive.</li>
-  <li>Kids room and adult room will be provided at the karaoke venue.</li>
-  <li>No kids allowed after 10pm.</li>
-  <li>Flight timing is important—please be on time for the wedding flight at 15:00.</li>
-</ul>
-
+    <tr>
+        <th>Time</th>
+        <th>Event</th>
+        <th>Location</th>
+    </tr>
+    <tr class="pink-dress">
+        <td>14:00 - 14:30</td>
+        <td>Guest Arrival</td>
+        <td>Aviation and Space Museum</td>
+    </tr>
+    <tr class="pink-dress">
+        <td>14:30</td>
+        <td>Wedding Ceremony Start 💒</td>
+        <td>Aviation and Space Museum</td>
+    </tr>
+    <tr class="pink-dress">
+        <td>14:45</td>
+        <td>Meet in Museum Lobby for Cessna Flights ✈️</td>
+        <td>Aviation and Space Museum</td>
+    </tr>
+    <tr class="pink-dress">
+        <td>15:00 - 16:30</td>
+        <td>Cessna Flights</td>
+        <td>Aviation and Space Museum</td>
+    </tr>
+    <tr class="pink-dress">
+        <td>15:00</td>
+        <td>Wedding Flight 🚁</td>
+        <td>Above Ottawa</td>
+    </tr>
+    <tr class="pink-dress">
+        <td>16:30 - 17:00</td>
+        <td>Photos & Chill Time 📸 (Pink Dress)</td>
+        <td>Aviation and Space Museum, Rideau Hall</td>
+    </tr>
+    <tr class="blue-dress">
+        <td>17:00 - 18:00</td>
+        <td>Photos & Chill Time 📸 (Blue Dress)</td>
+        <td>Rideau Hall, Lac Leamy, Gatineau River (in Front of Sterling)</td>
+    </tr>
+    <tr class="blue-dress">
+        <td>18:00 - 20:00</td>
+        <td>Dinner 🍽️</td>
+        <td>Sterling Steakhouse, Gatineau</td>
+    </tr>
+    <tr class="blue-dress">
+        <td>20:30</td>
+        <td>Karaoke Fun 🎤🎶</td>
+        <td>VIP Karaoke </td>
+    </tr>
+</table> 
+<h2 style="margin-top:40px;">👰🤵 Wedding Guest List & RSVP Tracker</h2>
+<p style="text-align:center;">Editable Google Sheet below – includes RSVP status, notes, and invitation tracking.</p>
+<iframe src=https://docs.google.com/spreadsheets/d/1-pPUPxx6X7rdAQrQZOxb74rxMgfcb7JO2z21-LN2xw0/edit?usp=drivesdk&embedded=true width="100%" height="1200"></iframe>
 </body>
 </html>
+
+ 
+
