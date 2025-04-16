@@ -1,1 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation de Mariage</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #fdf6e3;
+            margin: 0;
+            padding: 0;
+            color: #4a4a4a;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 0;
+            background-color: #ff7f50;
+            color: white;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+        }
+
+        section {
+            padding: 30px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #ff7f50;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .date {
+            font-weight: bold;
+            font-size: 1.4em;
+            color: #ff6347;
+        }
+
+        .schedule {
+            margin-top: 30px;
+            text-align: left;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            font-family: 'Georgia', serif;
+        }
+
+        .schedule th,
+        .schedule td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .schedule th {
+            background-color: #ff7f50;
+            color: white;
+        }
+
+        .pink-dress {
+            background-color: #f8c7d4;
+        }
+
+        .blue-dress {
+            background-color: #b4c8e7;
+        }
+
+        .photo {
+            margin-top: 30px;
+            width: 60%;
+            height: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        footer {
+            font-size: 0.9em;
+            text-align: center;
+            padding: 20px;
+            background-color: #ff7f50;
+            color: white;
+        }
+
+        .qna {
+            text-align: left;
+            width: 80%;
+            margin: 30px auto;
+            font-size: 1.1em;
+        }
+
+        .qna p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <p>Vous êtes invité à une célébration de mariage privée !</p>
+    </header>
+
+    <section>
+        <h2>Joignez-vous à nous pour le mariage de</h2>
+        <h1>Louis-David & Hebba</h1>
+        <p>Nous avons hâte de partager cette aventure excitante avec vous ! 🎉</p>
+        <p class="date">Dimanche, le 4 mai 2025</p>
+        <p>(Que la force soit avec vous ! Rejoignez-nous en ce Star Wars Day pour une célébration hors de ce monde !)</p>
+        <p>Avec un amour pour le voyage et l'aventure, nous sommes ravis de faire ce voyage ensemble. 🚀</p>
+        <p>Ceci est une cérémonie très privée avec seulement des proches parents (parents, enfants).</p>
+        <p>Votre invitation inclut l'entrée au Musée de l'aviation et de l'espace—les enfants adorent cet endroit ! 🚀✨</p>
+        
+        <img src="PXL_20250202_062349631.jpg" alt="Photo du couple" class="photo">
+
+        <h3>Programme de l'événement</h3>
+        <table class="schedule">
+            <tr>
+                <th>Heure</th>
+                <th>Événement</th>
+                <th>Lieu</th>
+            </tr>
+            <tr class="pink-dress">
+                <td>14:00 - 14:30</td>
+                <td>Arrivée des invités</td>
+                <td><a href="https://maps.app.goo.gl/4a2F2C5PufaHmHHt7">Musée de l'aviation et de l'espace</a></td>
+            </tr>
+            <tr class="pink-dress">
+                <td>14:30</td>
+                <td>Courte cérémonie de mariage 💒</td>
+                <td><a href="https://maps.app.goo.gl/4a2F2C5PufaHmHHt7">Musée de l'aviation et de l'espace</a></td>
+            </tr>
+            <tr class="pink-dress">
+                <td>16:30 - 17:00</td>
+                <td>Photos & Détente 📸</td>
+                <td>À confirmer</td>
+            </tr>
+            <tr class="blue-dress">
+                <td>17:00 - 18:00</td>
+                <td>Photos & Détente 📸</td>
+                <td>À confirmer</td>
+            </tr>
+            <tr class="blue-dress">
+                <td>18:00 - 20:00</td>
+                <td>Dîner 🍽️</td>
+                <td><a href="https://maps.app.goo.gl/ZesYiXQmQEEhw9tf7">Steakhouse Sterling, Gatineau</a>
+                <p>Menu fixe avec trois options. (Plus de détails à venir)</p>
+                </td>
+            </tr>
+            <tr class="blue-dress">
+                <td>20:30</td>
+                <td>Karaoké amusant 🎤🎶</td>
+                <td><a href="https://maps.app.goo.gl/2b42AgpMzGFfe7hv8">VIP Karaoke</a></td>
+            </tr>
+        </table>
+        <p>Les enfants sont les bienvenus au VIP Karaoke jusqu'à 22h. Si vous êtes intéressés, veuillez envoyer un courriel à Hebba à <a href="mailto:Hebba.Antar+wedding@gmail.com">Hebba.Antar@gmail.com</a>.</p>
+
+        <div class="qna">
+            <h3>Questions Fréquemment Posées</h3>
+            <p><strong>Recommandez-vous un hôtel ?</strong></p>
+            <p>Un bon hôtel près de l'autoroute et du musée, à seulement 5-10 minutes du restaurant, est le <a href="https://maps.app.goo.gl/c7NMt5Njuj8VaVgM7">Courtyard Ottawa East</a>. Le tarif est d'environ 200 $. Il y a d'autres hôtels au centre-ville d'Ottawa pour un peu plus $$$. Les hôtels à Gatineau pourraient être moins chers. AirBNB est une autre bonne option pour ceux qui aiment être économiques. 🤣 Pour les hôtels dans l'ouest, près de chez nous, considérez le <a href="https://maps.app.goo.gl/x2ZZSabS32XoEYiU7">TownePlace Suites</a> ou le <a href="https://maps.app.goo.gl/kVu9N7YAQxr9TS7U8">Brookstreet Hotel</a> pour environ 330 $.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>Pour plus de détails, contactez-nous à : <a href="mailto:louis.david.germain+wedding@gmail.com">louis.david.germain@gmail.com</a></p>
+    </footer>
+
+</body>
+
+</html>
