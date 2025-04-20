@@ -24,16 +24,36 @@
             list-style: none;
             padding-left: 0;
         }
-        li::before {
-            content: "💍 ";
+        li {
+            position: relative;
+            padding-left: 2em;
+            margin-bottom: 0.5em;
+        }
+        /* Custom bullet styles */
+        .not-done::before {
+            content: "🔳";
+            position: absolute;
+            left: 0;
         }
         .done {
             text-decoration: line-through;
             color: gray;
         }
+        .done::before {
+            content: "🔲";
+            position: absolute;
+            left: 0;
+        }
         .urgent {
             color: red;
             font-weight: bold;
+        }
+        /* Further indentation for sub-list */
+        .sublist {
+            margin-left: 2em;
+        }
+        .sublist li {
+            padding-left: 2em;
         }
     </style>
 </head>
@@ -45,52 +65,55 @@
 
     <h2>📣 Week of Apr 21–27 — Communicate & prep</h2>
     <ul>
-        <li>📲 <span class="done">Send schedule to guests</span></li>
-        <li>🙋‍♂️ Confirm everyone’s roles</li>
-        <li>🎁 Buy thank-you cards or small gifts</li>
-        <li>📸 <span class="done">Pick a few photo spots</span></li>
-        <li>📋 Confirm restaurant seating (1 table adults / 1 table kids?)</li>
-        <li>✔️ Finalize guest count 
-            <ul>
-                <li>Camille's boyfriend — still not sure</li>
-                <li>Islem — still unsure</li>
+        <li class="done">📲 Send schedule to guests</li>
+        <li class="not-done">🙋‍♂️ Confirm everyone’s roles</li>
+        <li class="not-done">🎁 Buy thank-you cards or small gifts</li>
+        <li class="done">📸 Pick a few photo spots</li>
+        <li class="not-done">📋 Confirm restaurant seating (1 table adults / 1 table kids?)</li>
+        <li class="not-done">✔️ Finalize guest count 
+            <ul class="sublist">
+                <li class="not-done">🤔 Camille's boyfriend — still not sure</li>
+                <li class="not-done">🤔 Islem — still unsure</li>
             </ul>    
         </li>
-        <li>👗 Finish outfit planning for Hebba’s kids</li>
-        <li>🌙 Look into mini honeymoon ideas (Nordik? Cozy hotel?)</li>
-    <li>Join/ Create WhatsApp group</li>
-    
+        <li class="not-done">👗 Finish outfit planning for Hebba’s kids</li>
+        <li class="not-done">🌙 Look into mini honeymoon ideas (Nordik? Cozy hotel?)</li>
+        <li class="not-done">💬 Join/ Create WhatsApp group</li>
+        <li class="not-done">🚗 Organize ride-sharing or carpool options</li>
+        <li class="not-done">📝 Send out last info/reminders to vendors</li>
     </ul>
     <h2>🎉 Week of Apr 28–May 3 — Final touches</h2>
     <ul>
-        <li>💇‍♂️ Groom haircut (optional 😄)</li>
-        <li>📞 <span class="done">Confirm dinner menu</span></li>
-        <li>🧰 Pack an emergency kit (safety pins, tissues, Advil?)</li>
-        <li>📜 Practice vows</li>
-        <li>✅ <span class="done">Double-confirm all bookings</span></li>
-        <li>🧘‍♀️ Chill and enjoy the countdown!</li>
-        <li>Back up plan: Check if yacht club is available</li>
+        <li class="not-done">💇‍♂️ Groom haircut (optional 😄)</li>
+        <li class="done">📞 Confirm dinner menu</li>
+        <li class="not-done">🧰 Pack an emergency kit (safety pins, tissues, Advil?)</li>
+        <li class="not-done">📜 Practice vows</li>
+        <li class="done">✅ Double-confirm all bookings</li>
+        <li class="not-done">🧘‍♀️ Chill and enjoy the countdown!</li>
+        <li class="not-done">🛥️ Back up plan: Check if yacht club is available</li>
+        <li class="not-done">🎀 Pack wedding outfits, accessories and shoes</li>
+        <li class="not-done">🎵 Make final karaoke song list/playlist</li>
     </ul>
 
     <p style="text-align:center;">❤️ We’re going to laugh, celebrate, and sing our hearts out! 🎤💃🕺</p>
+
 <footer>
     <h2>Completed tasks</h2>
     <ul>
-        <li class="done">Pick ceremony location (Gatineau Park? Rideau Hall?)</li>
-        <li class="done">Groom got his outfit</li>
-        <li class="done">Hebba: hair appointment booked</li>
-        <li class="done">Buy or pick up rings</li>
-        <li class="done">update schedule with: Be there at 2:45pm</li>
-        <li class="done">update schedule with: Attend event from 3:00-4:30</li>
-        <li class="done">Confirm 9-12 passengers ($45 / person)</li>
-        <li class="done">360 camera charged and ready</li>
-        <li class="done">Write vows</li>
-        <li class="done">Karaoke spot reserved</li>
-        <li class="done">Confirm hotel/overnight plan if needed</li>
-        <li class="done">Plan for rain (backup ceremony spot?)</li>
-        <li class="done">Book plane</li>
-
-  </ul>
+        <li class="done">📍 Pick ceremony location (Gatineau Park? Rideau Hall?)</li>
+        <li class="done">👔 Groom got his outfit</li>
+        <li class="done">💇‍♀️ Hebba: hair appointment booked</li>
+        <li class="done">💍 Buy or pick up rings</li>
+        <li class="done">🕒 update schedule with: Be there at 2:45pm</li>
+        <li class="done">⏰ update schedule with: Attend event from 3:00-4:30</li>
+        <li class="done">🧑‍🤝‍🧑 Confirm 9-12 passengers ($45 / person)</li>
+        <li class="done">📷 360 camera charged and ready</li>
+        <li class="done">✍️ Write vows</li>
+        <li class="done">🎤 Karaoke spot reserved</li>
+        <li class="done">🏨 Confirm hotel/overnight plan if needed</li>
+        <li class="done">🌧️ Plan for rain (backup ceremony spot?)</li>
+        <li class="done">🛫 Book plane</li>
+    </ul>
 </footer>
 
 </body>
