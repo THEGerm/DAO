@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bread Recipes</title>
+  <style>
+    /* Base styles */
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    .tabs {
+      display: flex;
+      overflow-x: auto;
+      background: #eee;
+      border-bottom: 2px solid #ccc;
+    }
+
+    .tab-button {
+      flex: 1;
+      padding: 1em;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+      background: #ddd;
+      font-weight: bold;
+    }
+
+    .tab-button.active {
+      background: #fff;
+      border-bottom: 3px solid #000;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 1em;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Section layout */
+    .section {
+      margin-bottom: 1.5em;
+    }
+
+    h2 {
+      margin-bottom: 0.5em;
+    }
+
+    ul {
+      padding-left: 1.2em;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5em;
+    }
+
+    .gallery img {
+      width: 100%;
+      max-width: 48%;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    /* Theme styles */
+    .earthy {
+      background: #f7f1e1;
+      color: #4b2e2e;
+    }
+
+    .white {
+      background: #fffbea;
+      color: #7a5e00;
+    }
+
+    .dark {
+      background: #ececec;
+      color: #333;
+    }
+
+    .rye {
+      background: #f0e5d8;
+      color: #5a4231;
+    }
+
+    @media (max-width: 600px) {
+      .tab-button {
+        font-size: 0.9em;
+      }
+
+      .gallery img {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-button active" onclick="switchTab(0)">Rustic Rye</button>
+    <button class="tab-button" onclick="switchTab(1)">Golden White</button>
+  </div>
+
+  <!-- Recipe Tab 1 -->
+  <div class="tab-content active earthy">
+    <div class="section">
+      <h2>Ingredients</h2>
+      <ul>
+        <li>200g poolish</li>
+        <li>340g unbleached flour</li>
+        <li>60g rye flour</li>
+        <li>260g water</li>
+        <li>50g Elrond starter</li>
+        <li>9g salt</li>
+        <li>25g olive oil</li>
+        <li>75g dried tomatoes</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Steps & Schedule</h2>
+      <ul>
+        <li><strong>18h45 (Day 1)</strong>: Mix poolish and autolyse flour + water for 30 min.</li>
+        <li><strong>19h15</strong>: Add rest of ingredients and knead 10 min.</li>
+        <li><strong>19h45</strong>: Bulk ferment in fridge overnight.</li>
+        <li><strong>06h00 (Day 2)</strong>: Rest 30 min at room temp.</li>
+        <li><strong>06h30</strong>: Divide and shape. Let rest 20 min.</li>
+        <li><strong>07h00</strong>: Final proof 45 min.</li>
+        <li><strong>08h00</strong>: Bake 15 min at 250°C with steam. Brush with garlic oil.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Gallery</h2>
+      <div class="gallery">
+        <img src="bread1.jpg" alt="Bread 1">
+        <img src="bread2.jpg" alt="Bread 2">
+      </div>
+    </div>
+  </div>
+
+  <!-- Recipe Tab 2 -->
+  <div class="tab-content white">
+    <div class="section">
+      <h2>Ingredients</h2>
+      <ul>
+        <li>300g bread flour</li>
+        <li>200g water</li>
+        <li>66g Elrond starter</li>
+        <li>8g salt</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Steps & Schedule</h2>
+      <ul>
+        <li><strong>17h15</strong>: Mix flour and water (autolyse).</li>
+        <li><strong>17h45</strong>: Add starter + salt. Knead.</li>
+        <li>Stretch & fold x4 over 2h.</li>
+        <li>Cold proof overnight.</li>
+        <li><strong>08h00</strong>: Bake at 475°F with steam for 35–40 min.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Gallery</h2>
+      <div class="gallery">
+        <img src="bread3.jpg" alt="Bread 3">
+        <img src="bread4.jpg" alt="Bread 4">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tab switching logic
+    function switchTab(index) {
+      const tabs = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-button');
+
+      tabs.forEach((tab, i) => {
+        tab.classList.toggle('active', i === index);
+        buttons[i].classList.toggle('active', i === index);
+      });
+    }
+  </script>
+</body>
+</html>
