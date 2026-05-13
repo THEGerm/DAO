@@ -284,7 +284,6 @@ footer{
     onkeydown="if(event.key==='Enter')doRefresh()" />
   <button class="btn btn-primary" onclick="doRefresh()" id="refreshBtn">↻  Refresh</button>
   <button class="btn btn-ghost" onclick="toggleAuto()" id="autoBtn">Auto: OFF</button>
-  <span class="warn-note">⚠ Rotate any key shared publicly before use</span>
 </div>
 
 <!-- Manual price override panel -->
@@ -330,7 +329,7 @@ footer{
   <div class="adv-wrap">
     <div class="adv-card adv-sigma">
       <div class="adv-hdr">
-        <div class="adv-av av-s">🤖</div>
+        <div class="adv-av av-s">🙍🏼</div>
         <div>
           <div class="adv-name">Sigma</div>
           <div class="adv-title">Quantitative Analyst · Last 7 days only · No goal context</div>
@@ -360,7 +359,7 @@ const HOLDINGS = [
   },
   {
     ticker:'XSP.TO', short:'XSP', name:'iShares Core S&P 500 CAD Hedged',
-    shares:400, account:'RRSP', target:27.6, cost:null,
+    shares:400, account:'RRSP', target:27.6, cost:69.23,
     note:'US large cap, CAD-hedged. Forfeits ~15bps/yr on US dividends (treaty drag in RRSP).'
   },
   {
@@ -704,11 +703,11 @@ You only see raw price history.
 
 Given 7–8 days of closing prices per ticker, produce:
 - One intro sentence (data-only perspective, no personal tone)
-- A markdown table: Ticker | Trend | 5-day Predicted Range | Confidence (Low/Med/High)
+- A markdown bullet point with these elements: Ticker, Trend, 5-day Predicted Range, Confidence (Low/Med/High).
 - Portfolio Momentum Score: 0-100 (50=neutral)
 - Two specific risk flags based purely on the price data
 
-Be numerical, concise, emotionless. No investment advice.`;
+Be numerical, concise, emotionless. No investment advice. Use bullet points (not tables). Sign off "— Sigma".`;
 
 async function callAI(key, sys, usr) {
   const r = await fetch('https://api.openai.com/v1/chat/completions', {
