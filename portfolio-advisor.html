@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Germ Capital · Portfolio Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #050810;
+  --s1:       #0c1120;
+  --s2:       #111827;
+  --s3:       #1a2235;
+  --border:   #1e2d45;
+  --border2:  #2a3d5a;
+  --text:     #e8edf5;
+  --muted:    #5a7090;
+  --muted2:   #3a5070;
+  --green:    #00e5a0;
+  --blue:     #3d9eff;
+  --amber:    #ffb020;
+  --red:      #ff4560;
+  --purple:   #a855f7;
+  --teal:     #06b6d4;
+  --green-bg: #00120c;
+  --blue-bg:  #040e1e;
+  --amber-bg: #130d00;
+  --red-bg:   #130008;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Mono',monospace;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(61,158,255,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(0,229,160,0.04) 0%, transparent 60%);
+}
+
+/* ── HEADER ─────────────────────────────────── */
+header{
+  position:sticky;top:0;z-index:200;
+  background:rgba(5,8,16,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:14px 20px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.logo{
+  font-family:'Syne',sans-serif;
+  font-weight:800;font-size:1.05rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+}
+.logo em{color:var(--blue);font-style:normal}
+.logo-sub{font-size:0.62rem;color:var(--muted);letter-spacing:0.08em;margin-top:2px;font-family:'DM Mono'}
+.header-right{text-align:right;font-size:0.68rem;color:var(--muted)}
+#mktBadge{font-size:0.7rem;margin-bottom:3px}
+.mk-open{color:var(--green)}
+.mk-closed{color:var(--muted)}
+.pulse{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);
+  animation:pulse 1.5s ease-in-out infinite;margin-right:4px;vertical-align:middle}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.7)}}
+
+/* ── API KEY BAR ─────────────────────────────── */
+.keybar{
+  background:var(--s1);
+  border-bottom:1px solid var(--border);
+  padding:10px 20px;
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+}
+.keybar input{
+  flex:1;min-width:220px;
+  background:var(--bg);
+  border:1px solid var(--border2);
+  color:var(--text);
+  padding:8px 12px;
+  border-radius:6px;
+  font-size:0.78rem;font-family:'DM Mono',monospace;
+  transition:border-color 0.2s;
+}
+.keybar input:focus{outline:none;border-color:var(--blue)}
+.keybar input::placeholder{color:var(--muted2)}
+.btn{
+  padding:7px 14px;
+  border:1px solid transparent;
+  border-radius:6px;
+  font-size:0.75rem;font-weight:600;font-family:'DM Mono',monospace;
+  cursor:pointer;letter-spacing:0.04em;
+  transition:all 0.15s;white-space:nowrap;
+}
+.btn:hover{opacity:0.85;transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn:disabled{opacity:0.4;cursor:not-allowed;transform:none}
+.btn-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn-ghost{background:transparent;color:var(--muted);border-color:var(--border2)}
+.btn-ghost.active{color:var(--green);border-color:var(--green)}
+.warn-note{font-size:0.65rem;color:var(--amber);opacity:0.8}
+
+/* ── MAIN LAYOUT ─────────────────────────────── */
+main{max-width:1100px;margin:0 auto;padding:20px}
+
+/* ── SUMMARY BAR ─────────────────────────────── */
+.sum-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
+  gap:10px;margin-bottom:24px;
+}
+.sum-card{
+  background:var(--s2);border:1px solid var(--border);
+  border-radius:10px;padding:12px 14px;
+  transition:border-color 0.2s;
+}
+.sum-card:hover{border-color:var(--border2)}
+.sum-label{font-size:0.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5px}
+.sum-val{font-size:1.15rem;font-weight:500;font-family:'Syne',sans-serif;line-height:1.2}
+.sum-sub{font-size:0.65rem;color:var(--muted);margin-top:3px}
+.pos{color:var(--green)}.neg{color:var(--red)}.neu{color:var(--muted)}
+
+/* ── SECTION HEADER ──────────────────────────── */
+.sec-hdr{
+  font-size:0.62rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:0.15em;
+  color:var(--muted);margin:24px 0 12px;
+  padding-bottom:8px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:8px;
+}
+.sec-hdr::before{content:'';display:inline-block;width:3px;height:12px;border-radius:2px;background:var(--blue)}
+
+/* ── HOLDINGS GRID ───────────────────────────── */
+.h-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:12px;margin-bottom:8px;
+}
+.h-card{
+  background:var(--s2);border:1px solid var(--border);
+  border-radius:12px;padding:16px;
+  position:relative;overflow:hidden;
+  transition:border-color 0.2s,transform 0.2s;
+}
+.h-card:hover{transform:translateY(-2px);border-color:var(--border2)}
+.h-card::before{
+  content:'';position:absolute;top:0;left:0;
+  width:3px;height:100%;border-radius:2px 0 0 2px;
+}
+.h-card.s-GOOD::before{background:var(--green)}
+.h-card.s-WATCH::before{background:var(--blue)}
+.h-card.s-WARN::before{background:var(--amber)}
+.h-card.s-URGENT::before{background:var(--red);
+  box-shadow:0 0 12px var(--red)}
+.h-card.s-URGENT{border-color:rgba(255,69,96,0.3);
+  background:linear-gradient(135deg,#0d0005 0%,var(--s2) 100%)}
+
+.h-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.h-ticker{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700}
+.h-name{font-size:0.66rem;color:var(--muted);margin-top:2px;line-height:1.4}
+.badges{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.badge{
+  font-size:0.58rem;font-weight:600;
+  padding:2px 7px;border-radius:20px;
+  text-transform:uppercase;letter-spacing:0.06em;
+  font-family:'DM Mono';
+}
+.b-tfsa{background:rgba(61,158,255,0.12);color:var(--blue);border:1px solid rgba(61,158,255,0.2)}
+.b-rrsp{background:rgba(0,229,160,0.1);color:var(--green);border:1px solid rgba(0,229,160,0.15)}
+.b-GOOD{background:rgba(0,229,160,0.1);color:var(--green)}
+.b-WATCH{background:rgba(61,158,255,0.12);color:var(--blue)}
+.b-WARN{background:rgba(255,176,32,0.1);color:var(--amber)}
+.b-URGENT{background:rgba(255,69,96,0.15);color:var(--red);animation:blink 1s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.6}}
+
+.h-price-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.h-price{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:600}
+.h-chg{font-size:0.78rem;font-weight:500}
+
+.h-meta{font-size:0.68rem;color:var(--muted);margin-bottom:10px;display:flex;gap:12px;flex-wrap:wrap}
+
+.wbar-wrap{margin-bottom:12px}
+.wbar-lbl{display:flex;justify-content:space-between;font-size:0.65rem;color:var(--muted);margin-bottom:4px}
+.wbar{height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.wbar-fill{height:100%;border-radius:2px;transition:width 0.6s ease}
+.wf-ok{background:var(--green)}.wf-warn{background:var(--amber)}.wf-urg{background:var(--red)}
+
+.advice{font-size:0.73rem;color:#8ba8c8;line-height:1.7}
+.advice p{margin-bottom:2px}
+.action-tag{
+  display:inline-block;margin-top:8px;
+  background:rgba(255,69,96,0.1);color:var(--red);
+  border:1px solid rgba(255,69,96,0.3);
+  border-radius:5px;padding:3px 9px;
+  font-size:0.65rem;font-weight:600;letter-spacing:0.05em;
+}
+.cost-row{font-size:0.65rem;color:var(--muted);margin-top:6px;border-top:1px solid var(--border);padding-top:6px}
+
+/* ── SPINNER ─────────────────────────────────── */
+.spin{
+  display:inline-block;width:14px;height:14px;
+  border:2px solid var(--border2);border-top-color:var(--blue);
+  border-radius:50%;animation:sp 0.7s linear infinite;
+}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* ── ADVISOR CARDS ───────────────────────────── */
+.adv-wrap{margin-bottom:16px}
+.adv-card{
+  border-radius:14px;padding:20px;
+  border:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.adv-gordon{
+  background:linear-gradient(135deg,#05111f 0%,var(--s2) 60%);
+  border-color:#1a3050;
+}
+.adv-sigma{
+  background:linear-gradient(135deg,#0d0520 0%,var(--s2) 60%);
+  border-color:#2a1a45;
+}
+.adv-card::after{
+  content:'';position:absolute;top:0;right:0;
+  width:200px;height:200px;border-radius:50%;
+  opacity:0.04;transform:translate(40%,-40%);
+}
+.adv-gordon::after{background:var(--blue)}
+.adv-sigma::after{background:var(--purple)}
+
+.adv-hdr{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.adv-av{
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;flex-shrink:0;
+}
+.av-g{background:rgba(61,158,255,0.15);border:1px solid rgba(61,158,255,0.2)}
+.av-s{background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.2)}
+.adv-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700}
+.adv-title{font-size:0.65rem;color:var(--muted);margin-top:2px}
+.adv-body{font-size:0.78rem;line-height:1.9;color:#8ba8c8;white-space:pre-wrap;min-height:50px}
+.adv-loading{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:0.78rem}
+.err{color:var(--red);font-size:0.75rem}
+
+/* ── FOOTER ──────────────────────────────────── */
+footer{
+  text-align:center;padding:20px;
+  font-size:0.62rem;color:var(--muted2);
+  border-top:1px solid var(--border);margin-top:16px;
+  letter-spacing:0.05em;
+}
+
+/* ── PLACEHOLDER ─────────────────────────────── */
+.placeholder{
+  color:var(--muted);font-size:0.78rem;
+  padding:30px;text-align:center;
+  border:1px dashed var(--border);border-radius:10px;
+  grid-column:1/-1;
+}
+
+/* ── RESPONSIVE ──────────────────────────────── */
+@media(max-width:600px){
+  .keybar{flex-direction:column}
+  .keybar input{width:100%;min-width:unset}
+  .sum-grid{grid-template-columns:repeat(2,1fr)}
+  main{padding:14px}
+  .h-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">💼 <em>GERM</em> CAPITAL</div>
+    <div class="logo-sub">Portfolio Intelligence · CIBC TFSA + RRSP</div>
+  </div>
+  <div class="header-right">
+    <div id="mktBadge" class="mk-closed">● Market Closed</div>
+    <div id="refreshTime">—</div>
+  </div>
+</header>
+
+<div class="keybar">
+  <input type="password" id="apiKey"
+    placeholder="🔑 Paste OpenAI key here (session memory only — never commit to GitHub)"
+    onkeydown="if(event.key==='Enter')doRefresh()" />
+  <button class="btn btn-primary" onclick="doRefresh()" id="refreshBtn">↻  Refresh</button>
+  <button class="btn btn-ghost" onclick="toggleAuto()" id="autoBtn">Auto: OFF</button>
+  <span class="warn-note">⚠ Rotate any key shared publicly before use</span>
+</div>
+
+<!-- Manual price override panel -->
+<div id="manualPanel" style="display:none;background:var(--s1);border-bottom:1px solid var(--border);padding:12px 20px;">
+  <div style="font-size:0.68rem;color:var(--amber);margin-bottom:10px;">
+    ⚠ Auto-fetch blocked (likely running inside Claude preview). 
+    <strong style="color:var(--text)">Host on GitHub Pages</strong> for live data, 
+    or enter prices manually below.
+    <a href="https://pages.github.com" target="_blank" style="color:var(--blue);margin-left:6px;">GitHub Pages guide →</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:8px;" id="manualInputs"></div>
+  <button class="btn btn-primary" style="margin-top:10px;font-size:0.72rem" onclick="applyManual()">▶ Use These Prices</button>
+</div>
+
+<main>
+  <div id="sumBar" style="display:none">
+    <div class="sum-grid" id="sumGrid"></div>
+  </div>
+
+  <div class="sec-hdr">TFSA · Tax-Free Growth</div>
+  <div class="h-grid" id="tfsaGrid">
+    <div class="placeholder">Hit ↻ Refresh to load live portfolio data.</div>
+  </div>
+
+  <div class="sec-hdr">RRSP · Tax-Deferred</div>
+  <div class="h-grid" id="rrspGrid"></div>
+
+  <div class="sec-hdr" style="margin-top:32px">🧠 AI ADVISORS</div>
+
+  <div class="adv-wrap">
+    <div class="adv-card adv-gordon">
+      <div class="adv-hdr">
+        <div class="adv-av av-g">👨‍💼</div>
+        <div>
+          <div class="adv-name">Gordon</div>
+          <div class="adv-title">Portfolio Advisor · Full context · Goal-aware</div>
+        </div>
+      </div>
+      <div class="adv-body" id="gordonBody" style="color:var(--muted)">Enter your API key and hit Refresh to hear from Gordon.</div>
+    </div>
+  </div>
+
+  <div class="adv-wrap">
+    <div class="adv-card adv-sigma">
+      <div class="adv-hdr">
+        <div class="adv-av av-s">🤖</div>
+        <div>
+          <div class="adv-name">Sigma</div>
+          <div class="adv-title">Quantitative Analyst · Last 7 days only · No goal context</div>
+        </div>
+      </div>
+      <div class="adv-body" id="sigmaBody" style="color:var(--muted)">Sigma crunches historical price data only — no strategy knowledge.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  GERM CAPITAL DASHBOARD · Personal use only · Not financial advice ·
+  Prices: Yahoo Finance via allorigins.win · AI: OpenAI GPT-4o-mini · Inception: Apr 22 2026 @ $105,216.82
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════
+//  PORTFOLIO CONFIGURATION
+// ═══════════════════════════════════════════════
+const INCEPTION = 105216.82;
+
+const HOLDINGS = [
+  {
+    ticker:'XEQT.TO', short:'XEQT', name:'iShares Core Equity ETF Portfolio',
+    shares:490, account:'TFSA', target:19.6, cost:42.38,
+    note:'Core global all-equity. DRIP enabled. Single-fund TFSA strategy.'
+  },
+  {
+    ticker:'XSP.TO', short:'XSP', name:'iShares Core S&P 500 CAD Hedged',
+    shares:400, account:'RRSP', target:27.6, cost:null,
+    note:'US large cap, CAD-hedged. Forfeits ~15bps/yr on US dividends (treaty drag in RRSP).'
+  },
+  {
+    ticker:'XEF.TO', short:'XEF', name:'iShares Core MSCI EAFE IMI',
+    shares:400, account:'RRSP', target:18.5, cost:48.50,
+    note:'Developed ex-NA (Europe, Japan, Australia). ~1,500 holdings.'
+  },
+  {
+    ticker:'XRB.TO', short:'XRB', name:'iShares Canadian Real Return Bond',
+    shares:500, account:'RRSP', target:10.6, cost:22.99,
+    note:'Real-return bonds. Trimmed from 1,000 to 500 in late Apr. Watch for further weakness.'
+  },
+  {
+    ticker:'XIC.TO', short:'XIC', name:'iShares Core S&P/TSX Capped Composite',
+    shares:140, account:'RRSP', target:7.1, cost:54.06,
+    note:'Canadian broad market. Filled home-country gap in early May.'
+  },
+  {
+    ticker:'ZAG.TO', short:'ZAG', name:'BMO Aggregate Bond Index ETF',
+    shares:490, account:'RRSP', target:6.2, cost:13.69,
+    note:'Aggregate bond diversifier. Monthly distributions ~3.45% yield.'
+  },
+  {
+    ticker:'XEC.TO', short:'XEC', name:'iShares Core MSCI Emerging Markets IMI',
+    shares:135, account:'RRSP', target:5.5, cost:41.64,
+    note:'EM exposure (China, India, Taiwan, Brazil). Higher vol, growth tilt.'
+  },
+  {
+    ticker:'CAE.TO', short:'CAE', name:'CAE Inc.',
+    shares:150, account:'RRSP', target:5.0, cost:34.90,
+    note:'Single stock. Active trailing stop limit (~10% below recent high). Max 7% of portfolio.'
+  }
+];
+
+// ═══════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════
+let autoTimer = null;
+let isAuto = false;
+let cachedPrices = {};
+
+// ═══════════════════════════════════════════════
+//  PRICE FETCHING — multi-proxy with fallback
+// ═══════════════════════════════════════════════
+const PROXY_FNS = [
+  u => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+  u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
+  u => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+];
+
+async function fetchTicker(ticker) {
+  const yahooUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=10d`;
+
+  let lastErr = null;
+  for (const proxyFn of PROXY_FNS) {
+    try {
+      const res = await fetch(proxyFn(yahooUrl), { cache:'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const json = await res.json();
+      const r = json?.chart?.result?.[0];
+      if (!r) throw new Error('No result in response');
+      const meta = r.meta;
+      const closes = r.indicators?.quote?.[0]?.close || [];
+      const ts = r.timestamp || [];
+      const valid = closes.map((c,i) => ({c, t:ts[i]})).filter(d => d.c != null);
+      const cur  = meta.regularMarketPrice ?? valid.at(-1)?.c ?? 0;
+      const prev = meta.previousClose ?? meta.chartPreviousClose ?? valid.at(-2)?.c ?? cur;
+      return {
+        ticker, cur, prev,
+        chg: cur - prev,
+        chgPct: ((cur - prev) / prev) * 100,
+        state: meta.marketState ?? 'CLOSED',
+        hist: valid.slice(-8).map(d => d.c)
+      };
+    } catch(e) {
+      lastErr = e;
+      console.warn(`Proxy failed for ${ticker}:`, e.message);
+    }
+  }
+
+  // All proxies failed — check if user has a manual override
+  const manual = manualPrices[ticker];
+  if (manual) {
+    console.info(`Using manual price for ${ticker}: $${manual}`);
+    return { ticker, cur: manual, prev: manual, chg: 0, chgPct: 0, state: 'MANUAL', hist: [] };
+  }
+
+  throw new Error(lastErr?.message || 'All proxies failed');
+}
+
+// Manual price overrides (user can set these if API fails)
+const manualPrices = {};
+
+// ═══════════════════════════════════════════════
+//  ADVICE ENGINE
+// ═══════════════════════════════════════════════
+function advice(cfg, pd, total) {
+  const { short, shares, target, cost } = cfg;
+  const { cur, prev, chg, chgPct } = pd;
+  const mv = cur * shares;
+  const wt = (mv / total) * 100;
+  const drift = wt - target;
+
+  let status = 'GOOD';
+  const msgs = [];
+  let action = null;
+
+  const up = n => chgPct >= n;
+  const dn = n => chgPct <= n;
+  const set = s => { if (['WATCH','WARN','URGENT'].indexOf(s) > ['WATCH','WARN','URGENT'].indexOf(status)) status = s; };
+
+  switch(short) {
+
+    case 'XEQT': {
+      if (wt > 25) {
+        set('WARN');
+        const sell = Math.ceil(((wt - 20) / 100 * total) / cur);
+        msgs.push(`⚠️ TRIM ALERT: ${wt.toFixed(1)}% of portfolio (limit: 25%). Sell ~${sell} shares to return to 20%.`);
+        action = `Sell ~${sell} XEQT`;
+      } else if (wt > 22) {
+        set('WATCH');
+        msgs.push(`👀 Approaching trim limit at ${wt.toFixed(1)}% (trigger: 25%). Watch.`);
+      } else if (wt < 17) {
+        set('WATCH');
+        msgs.push(`📊 Below target at ${wt.toFixed(1)}% (target: 19.6%). Top up with next contribution.`);
+      } else {
+        msgs.push(`✅ Core position healthy at ${wt.toFixed(1)}% (target: 19.6%). No action.`);
+      }
+      if (dn(-5)) { set('WATCH'); msgs.push(`🌍 Global selloff (${chgPct.toFixed(1)}%). XEQT holds 9,000+ companies — stay the course.`); }
+      else if (dn(-2)) msgs.push(`📉 Modest dip (${chgPct.toFixed(1)}%). Normal ETF noise.`);
+      else if (up(5)) msgs.push(`🚀 Big rally (+${chgPct.toFixed(1)}%). Verify weight stays under 25%.`);
+      else if (up(2)) msgs.push(`📈 Good day for global equities (+${chgPct.toFixed(1)}%).`);
+      msgs.push(`💡 DRIP active in TFSA — distributions auto-reinvest each quarter.`);
+      break;
+    }
+
+    case 'XSP': {
+      if (wt > 33) { set('WATCH'); msgs.push(`🇺🇸 US exposure elevated at ${wt.toFixed(1)}% (target: 27.6%). Watch for further drift.`); }
+      else if (wt < 22) { set('WATCH'); msgs.push(`🇺🇸 US below target at ${wt.toFixed(1)}% (target: 27.6%). Add on next rebalance.`); }
+      else msgs.push(`✅ US large cap on target at ${wt.toFixed(1)}%.`);
+      msgs.push(`💱 CAD-hedged: protected from USD/CAD swings but costs ~15bps/yr on US dividend treaty in RRSP.`);
+      if (dn(-2)) msgs.push(`📉 S&P 500 pullback (${chgPct.toFixed(1)}%). Normal correction activity.`);
+      else if (up(2)) msgs.push(`📈 Strong US session (+${chgPct.toFixed(1)}%).`);
+      break;
+    }
+
+    case 'XEF': {
+      if (wt < 14) { set('WATCH'); msgs.push(`🌍 EAFE underweight at ${wt.toFixed(1)}% (target: 18.5%). Add on next contribution.`); }
+      else if (wt > 25) { set('WATCH'); msgs.push(`🌍 EAFE above target at ${wt.toFixed(1)}%. Consider trimming on next rebalance.`); }
+      else msgs.push(`✅ International developed on track at ${wt.toFixed(1)}%.`);
+      if (dn(-2)) msgs.push(`📉 EAFE weakness (${chgPct.toFixed(1)}%). Europe/Japan softness.`);
+      else if (up(2)) msgs.push(`📈 International markets positive (+${chgPct.toFixed(1)}%).`);
+      break;
+    }
+
+    case 'XRB': {
+      if (cur < 21) {
+        set('WARN');
+        msgs.push(`⚠️ XRB below $21 — real yield stress. Seriously consider trimming remaining 500 shares.`);
+        action = 'Consider selling 250 XRB';
+      } else if (cur < 22) {
+        set('WATCH');
+        msgs.push(`👀 XRB approaching $22 floor. Watch for persistence before acting.`);
+      } else if (cur > 23.50) {
+        msgs.push(`✅ XRB recovering above $23.50. Real rate environment easing.`);
+      } else {
+        msgs.push(`📊 XRB in holding range ($22–$23.50). Inflation hedge intact.`);
+      }
+      if (dn(-1.5)) { set('WATCH'); msgs.push(`📉 Bond selloff (${chgPct.toFixed(1)}%). Persistent weakness pattern — monitor.`); }
+      else if (up(1)) msgs.push(`📈 Bond rally today (+${chgPct.toFixed(1)}%). Rate expectations softening.`);
+      msgs.push(`ℹ️ Trimmed from 1,000→500 shares at $22.99 in Apr. Good call given continued weakness.`);
+      break;
+    }
+
+    case 'XIC': {
+      if (wt > 10) { set('WATCH'); msgs.push(`🍁 Canadian equity elevated at ${wt.toFixed(1)}% (target: 7.1%). Trim if sustained above 10%.`); }
+      else if (wt < 5) { set('WATCH'); msgs.push(`🍁 Canadian equity below target at ${wt.toFixed(1)}% (target: 7.1%). Add on next contribution.`); }
+      else msgs.push(`✅ Canadian market allocation on target at ${wt.toFixed(1)}%.`);
+      if (dn(-1.5)) msgs.push(`📉 TSX soft today (${chgPct.toFixed(1)}%). Oil/banks/financials driving.`);
+      else if (up(1.5)) msgs.push(`📈 TSX positive (+${chgPct.toFixed(1)}%).`);
+      break;
+    }
+
+    case 'ZAG': {
+      msgs.push(`📊 ZAG at ${wt.toFixed(1)}% (target: 6.2%). Aggregate bond ballast doing its job.`);
+      if (up(0.5)) msgs.push(`📈 Bond rally today (+${chgPct.toFixed(1)}%). Rate expectations easing.`);
+      else if (dn(-0.5)) msgs.push(`📉 Modest pullback (${chgPct.toFixed(1)}%). Normal for aggregate bonds.`);
+      else msgs.push(`⚖️ Stable today. Low-vol ballast as intended.`);
+      msgs.push(`💰 Monthly distributions ~3.45% yield. No DRIP in RRSP — cash accumulates.`);
+      break;
+    }
+
+    case 'XEC': {
+      if (wt > 8) { set('WATCH'); msgs.push(`🌏 EM elevated at ${wt.toFixed(1)}% (target: 5.5%). Trim on next rebalance.`); }
+      else if (wt < 4) { set('WATCH'); msgs.push(`🌏 EM below target at ${wt.toFixed(1)}% (target: 5.5%). Add on next contribution.`); }
+      else msgs.push(`✅ Emerging markets on target at ${wt.toFixed(1)}%.`);
+      if (dn(-4)) { set('WATCH'); msgs.push(`📉 EM volatility (${chgPct.toFixed(1)}%). Expected for this sleeve — hold.`); }
+      else if (up(4)) msgs.push(`🚀 EM surge (+${chgPct.toFixed(1)}%). China/India/Taiwan driving.`);
+      break;
+    }
+
+    case 'CAE': {
+      const estTrigger = Math.max(cur * 0.905, 33.50);
+      const cushion = cur - estTrigger;
+      const gainPct = cost ? ((cur - cost) / cost * 100) : 0;
+
+      if (cur < 33.50) {
+        set('URGENT');
+        msgs.push(`🚨 CAE BELOW TRAILING STOP TRIGGER (~$33.50). CHECK CIBC APP IMMEDIATELY — stop may have executed.`);
+        action = '⚠️ CHECK CIBC NOW';
+      } else if (cushion < 1.50) {
+        set('WARN');
+        msgs.push(`⚠️ CAE near stop trigger. Only $${cushion.toFixed(2)} of cushion above est. trigger ~$${estTrigger.toFixed(2)}.`);
+      } else if (cur > 42) {
+        msgs.push(`🎯 CAE running well. Trailing stop has followed price up significantly.`);
+        msgs.push(`🛡️ Est. current trigger: ~$${(cur * 0.905).toFixed(2)} (tracking 10% below current price).`);
+      } else {
+        msgs.push(`✅ CAE at $${cur.toFixed(2)}. Trailing stop active, est. trigger ~$${estTrigger.toFixed(2)}.`);
+      }
+      if (wt > 7) {
+        set('WARN');
+        const trim = Math.ceil(((wt - 5) / 100 * total) / cur);
+        msgs.push(`⚠️ CAE exceeds 7% max single-stock limit at ${wt.toFixed(1)}%. Trim ~${trim} shares.`);
+        action = action || `Trim ~${trim} CAE`;
+      }
+      if (dn(-5)) { set('WARN'); msgs.push(`📉 Sharp drop (${chgPct.toFixed(1)}%). Check for company news or stop execution.`); }
+      else if (up(5)) msgs.push(`🚀 CAE surging (+${chgPct.toFixed(1)}%). Stop is automatically following the price up.`);
+      if (cost) msgs.push(`💡 Cost: ~$${cost.toFixed(2)} | Unrealized gain: ${gainPct >= 0 ? '+' : ''}${gainPct.toFixed(1)}%`);
+      break;
+    }
+  }
+
+  return { status, msgs, action, wt, drift, mv };
+}
+
+// ═══════════════════════════════════════════════
+//  RENDER FUNCTIONS
+// ═══════════════════════════════════════════════
+function renderSummary(priceMap) {
+  const total = HOLDINGS.reduce((s,h) => s + (priceMap[h.ticker]?.cur || 0) * h.shares, 0);
+  const dayPnl = HOLDINGS.reduce((s,h) => s + (priceMap[h.ticker]?.chg || 0) * h.shares, 0);
+  const dayPct = dayPnl / (total - dayPnl) * 100;
+  const since = total - INCEPTION;
+  const sincePct = since / INCEPTION * 100;
+  const tfsa = (priceMap['XEQT.TO']?.cur || 0) * 490;
+  const rrsp = total - tfsa;
+  const buf = total - 100000;
+
+  document.getElementById('sumBar').style.display = 'block';
+  document.getElementById('sumGrid').innerHTML = `
+    <div class="sum-card">
+      <div class="sum-label">Portfolio Total</div>
+      <div class="sum-val">$${fmt0(total)}</div>
+      <div class="sum-sub">CAD</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-label">Today P&amp;L</div>
+      <div class="sum-val ${dayPnl>=0?'pos':'neg'}">${dayPnl>=0?'+':''}$${fmt0(Math.abs(dayPnl))}</div>
+      <div class="sum-sub ${dayPnl>=0?'pos':'neg'}">${dayPnl>=0?'+':''}${dayPct.toFixed(2)}%</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-label">Since Apr 22</div>
+      <div class="sum-val ${since>=0?'pos':'neg'}">${since>=0?'+':''}$${fmt0(Math.abs(since))}</div>
+      <div class="sum-sub ${since>=0?'pos':'neg'}">${since>=0?'+':''}${sincePct.toFixed(1)}%</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-label">TFSA</div>
+      <div class="sum-val">$${fmt0(tfsa)}</div>
+      <div class="sum-sub">XEQT · DRIP on</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-label">RRSP</div>
+      <div class="sum-val">$${fmt0(rrsp)}</div>
+      <div class="sum-sub">7 positions</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-label">Buffer &gt;$100k</div>
+      <div class="sum-val ${buf>=5000?'pos':buf>=0?'neu':'neg'}">$${fmt0(Math.abs(buf))}</div>
+      <div class="sum-sub">${buf>=0?'CIBC Tier 1 ✓':'⚠ Below threshold'}</div>
+    </div>
+  `;
+  return total;
+}
+
+function renderCard(cfg, pd, total) {
+  const adv = advice(cfg, pd, total);
+  const { cur, chg, chgPct, state } = pd;
+  const sign = chg >= 0 ? '+' : '';
+  const cc = chg >= 0 ? 'pos' : 'neg';
+  const barW = Math.min((adv.wt / 30) * 100, 100).toFixed(1);
+  const barCls = adv.status === 'URGENT' ? 'wf-urg' : adv.status === 'WARN' ? 'wf-warn' : 'wf-ok';
+  const costRow = cfg.cost
+    ? `<div class="cost-row">Cost basis: $${cfg.cost.toFixed(2)} · MV: $${fmt0(adv.mv)} · ${adv.wt.toFixed(1)}% of portfolio</div>`
+    : `<div class="cost-row">MV: $${fmt0(adv.mv)} · ${adv.wt.toFixed(1)}% of portfolio</div>`;
+
+  return `
+  <div class="h-card s-${adv.status}">
+    <div class="h-top">
+      <div>
+        <div class="h-ticker">${cfg.short}</div>
+        <div class="h-name">${cfg.name}</div>
+      </div>
+      <div class="badges">
+        <span class="badge b-${cfg.account.toLowerCase()}">${cfg.account}</span>
+        <span class="badge b-${adv.status}">${adv.status}</span>
+      </div>
+    </div>
+    <div class="h-price-row">
+      <span class="h-price">$${cur.toFixed(2)}</span>
+      <span class="h-chg ${cc}">${sign}$${Math.abs(chg).toFixed(3)} (${sign}${chgPct.toFixed(2)}%)</span>
+    </div>
+    <div class="h-meta">
+      <span>${cfg.shares} shares</span>
+      <span style="color:var(--muted2);font-size:0.62rem">${state}</span>
+    </div>
+    <div class="wbar-wrap">
+      <div class="wbar-lbl"><span>Weight ${adv.wt.toFixed(1)}%</span><span>Target ${cfg.target}%</span></div>
+      <div class="wbar"><div class="wbar-fill ${barCls}" style="width:${barW}%"></div></div>
+    </div>
+    <div class="advice">${adv.msgs.map(m => `<p>${m}</p>`).join('')}</div>
+    ${adv.action ? `<div class="action-tag">▶ ${adv.action}</div>` : ''}
+    ${costRow}
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════
+//  AI ADVISORS
+// ═══════════════════════════════════════════════
+const SYS_GORDON = `You are Gordon, a sharp, friendly, no-fluff Canadian portfolio advisor for Germ (Louis-David Germain).
+
+PORTFOLIO: ~$108k CAD, CIBC TFSA + RRSP. Restructured Apr 22 2026.
+GOAL: General wealth building, 5–15 year horizon, moderate-aggressive (75/25 equity/bonds).
+TARGETS: XEQT 19.6%, XSP 27.6%, XEF 18.5%, XRB 10.6%, XIC 7.1%, ZAG 6.2%, XEC 5.5%, CAE 5%.
+RULES: Trim XEQT>25% of total. CAE trailing stop ~10% below high. XRB trim if <$21. CAE max 7%. Rebalance via contributions. Annual review November.
+ACCOUNTS: TFSA = tax-free (DRIP on XEQT). RRSP = tax-deferred.
+
+FORMAT: One punchy opening sentence. 3–4 bullet observations (concise). One action recommendation. Sign off "— Gordon".`;
+
+const SYS_SIGMA = `You are Sigma, a quant analyst. You have ZERO knowledge of investor goals, risk profile, or strategy.
+You only see raw price history.
+
+Given 7–8 days of closing prices per ticker, produce:
+- One intro sentence (data-only perspective, no personal tone)
+- A markdown table: Ticker | Trend | 5-day Predicted Range | Confidence (Low/Med/High)
+- Portfolio Momentum Score: 0-100 (50=neutral)
+- Two specific risk flags based purely on the price data
+
+Be numerical, concise, emotionless. No investment advice.`;
+
+async function callAI(key, sys, usr) {
+  const r = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json','Authorization':`Bearer ${key}`},
+    body: JSON.stringify({
+      model: 'gpt-4o-mini',
+      messages: [{role:'system',content:sys},{role:'user',content:usr}],
+      max_tokens: 600, temperature: 0.7
+    })
+  });
+  if (!r.ok) { const e = await r.json(); throw new Error(e.error?.message || `HTTP ${r.status}`); }
+  const d = await r.json();
+  return d.choices[0].message.content;
+}
+
+// ═══════════════════════════════════════════════
+//  MAIN REFRESH
+// ═══════════════════════════════════════════════
+async function doRefresh() {
+  const key = document.getElementById('apiKey').value.trim();
+  const btn = document.getElementById('refreshBtn');
+  btn.disabled = true; btn.textContent = '⏳ Loading...';
+
+  document.getElementById('tfsaGrid').innerHTML = '<div class="placeholder"><div class="spin"></div> Fetching live prices...</div>';
+  document.getElementById('rrspGrid').innerHTML = '';
+  document.getElementById('gordonBody').innerHTML = '<div class="adv-loading"><div class="spin"></div> Gordon is analyzing your portfolio...</div>';
+  document.getElementById('sigmaBody').innerHTML = '<div class="adv-loading"><div class="spin"></div> Sigma is crunching numbers...</div>';
+
+  try {
+    // Fetch prices (throttled)
+    const pm = {};
+    let failCount = 0;
+    for (const h of HOLDINGS) {
+      await delay(350);
+      try { pm[h.ticker] = await fetchTicker(h.ticker); }
+      catch(e) {
+        console.warn(h.ticker, e.message);
+        pm[h.ticker] = {ticker:h.ticker,cur:0,prev:0,chg:0,chgPct:0,state:'ERR',hist:[]};
+        failCount++;
+      }
+    }
+
+    // If all failed, show manual panel
+    if (failCount === HOLDINGS.length) {
+      showManualPanel();
+      document.getElementById('tfsaGrid').innerHTML =
+        `<div class="placeholder" style="color:var(--amber)">
+          ⚠ All price fetches failed.<br><br>
+          <strong>Two options:</strong><br>
+          1. Enter prices manually in the yellow panel above<br>
+          2. Host on <a href="https://pages.github.com" target="_blank" style="color:var(--blue)">GitHub Pages</a> for live auto-fetch
+        </div>`;
+      btn.disabled = false; btn.textContent = '↻  Refresh';
+      return;
+    }
+
+    // Partial failure: hide manual panel, continue with available data
+    if (failCount > 0) hideManualPanel();
+    else hideManualPanel();
+
+    // Total
+    const total = renderSummary(pm);
+
+    // Render cards
+    const tfsa = HOLDINGS.filter(h => h.account==='TFSA').map(h => renderCard(h, pm[h.ticker], total)).join('');
+    const rrsp = HOLDINGS.filter(h => h.account==='RRSP').map(h => renderCard(h, pm[h.ticker], total)).join('');
+    document.getElementById('tfsaGrid').innerHTML = tfsa;
+    document.getElementById('rrspGrid').innerHTML = rrsp;
+
+    // Market state
+    const states = Object.values(pm).map(p => p.state);
+    const open = states.includes('REGULAR');
+    document.getElementById('mktBadge').innerHTML = open
+      ? `<span class="mk-open"><span class="pulse"></span>Market Open (TSX)</span>`
+      : `<span class="mk-closed">● Market Closed</span>`;
+    document.getElementById('refreshTime').textContent = `Updated: ${new Date().toLocaleTimeString('en-CA')}`;
+
+    // AI Advisors
+    if (key) {
+      const snap = HOLDINGS.map(h => {
+        const p = pm[h.ticker];
+        const mv = (p.cur * h.shares).toFixed(0);
+        const wt = ((p.cur * h.shares / total) * 100).toFixed(1);
+        return `${h.short}: $${p.cur.toFixed(2)} (${p.chgPct >= 0 ? '+' : ''}${p.chgPct.toFixed(2)}% today), MV $${mv}, weight ${wt}%`;
+      }).join('\n');
+
+      const gordonPrompt = `Portfolio snapshot — Total: $${total.toFixed(0)} CAD (inception: $${INCEPTION.toFixed(0)}, since: ${((total-INCEPTION)/INCEPTION*100).toFixed(1)}%):\n${snap}\n\nGive me your daily assessment, Gordon.`;
+
+      const hist = HOLDINGS.map(h => {
+        const p = pm[h.ticker];
+        const closes = p.hist.map(c => `$${c.toFixed(2)}`).join(', ');
+        return `${h.short}: [${closes}] → current $${p.cur.toFixed(2)}`;
+      }).join('\n');
+
+      const sigmaPrompt = `Last 7–8 trading day closing prices:\n${hist}\n\nProvide your quantitative analysis and next-week prediction.`;
+
+      const [g, s] = await Promise.allSettled([
+        callAI(key, SYS_GORDON, gordonPrompt),
+        callAI(key, SYS_SIGMA, sigmaPrompt)
+      ]);
+
+      document.getElementById('gordonBody').textContent =
+        g.status === 'fulfilled' ? g.value : `Gordon unavailable: ${g.reason?.message}`;
+      document.getElementById('sigmaBody').textContent =
+        s.status === 'fulfilled' ? s.value : `Sigma unavailable: ${s.reason?.message}`;
+    } else {
+      document.getElementById('gordonBody').textContent = 'Enter your OpenAI API key to activate Gordon.';
+      document.getElementById('sigmaBody').textContent = 'Enter your OpenAI API key to activate Sigma.';
+    }
+
+  } catch(e) {
+    console.error(e);
+    document.getElementById('tfsaGrid').innerHTML = `<div class="placeholder" style="color:var(--red)">Error: ${e.message}</div>`;
+  }
+
+  btn.disabled = false; btn.textContent = '↻  Refresh';
+}
+
+function toggleAuto() {
+  const btn = document.getElementById('autoBtn');
+  if (isAuto) {
+    clearInterval(autoTimer); isAuto = false;
+    btn.textContent = 'Auto: OFF'; btn.classList.remove('active');
+  } else {
+    doRefresh();
+    autoTimer = setInterval(doRefresh, 60000);
+    isAuto = true;
+    btn.textContent = 'Auto: ON (60s)'; btn.classList.add('active');
+  }
+}
+
+// ── Manual price fallback ─────────────────────
+function buildManualInputs() {
+  const container = document.getElementById('manualInputs');
+  container.innerHTML = HOLDINGS.map(h => `
+    <div>
+      <div style="font-size:0.6rem;color:var(--muted);margin-bottom:3px">${h.short}</div>
+      <input type="number" step="0.01" id="mp_${h.short}"
+        placeholder="e.g. ${(h.cost || 43).toFixed(2)}"
+        style="width:100%;background:var(--bg);border:1px solid var(--border2);color:var(--text);
+               padding:5px 8px;border-radius:5px;font-size:0.75rem;font-family:'DM Mono'" />
+    </div>`).join('');
+}
+
+function applyManual() {
+  let anySet = false;
+  for (const h of HOLDINGS) {
+    const val = parseFloat(document.getElementById(`mp_${h.short}`)?.value);
+    if (!isNaN(val) && val > 0) { manualPrices[h.ticker] = val; anySet = true; }
+  }
+  if (anySet) doRefresh();
+  else alert('Enter at least one price first.');
+}
+
+// ── Show/hide manual panel ────────────────────
+function showManualPanel() {
+  const panel = document.getElementById('manualPanel');
+  if (panel.style.display === 'none') {
+    panel.style.display = 'block';
+    buildManualInputs();
+  }
+}
+function hideManualPanel() {
+  document.getElementById('manualPanel').style.display = 'none';
+}
+
+
+function fmt0(n) { return Math.abs(n).toLocaleString('en-CA', {maximumFractionDigits:0}); }
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+// Session persistence (cleared when browser tab closes)
+const k = sessionStorage.getItem('gc_key');
+if (k) document.getElementById('apiKey').value = k;
+document.getElementById('apiKey').addEventListener('input', function() {
+  sessionStorage.setItem('gc_key', this.value);
+});
+</script>
+</body>
+</html>
