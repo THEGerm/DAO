@@ -276,7 +276,7 @@ function ensureInception(hist,ticker){
 function addPt(hist,ticker,price){
   if(price<=0)return;
   ensureInception(hist,ticker);
-  const today=new Date().toISOString().slice(0,10);
+  const today=new Date().toISOString().slice(0,13);
   hist[ticker]=hist[ticker].filter(d=>d.ts!==today);
   hist[ticker].push({ts:today,p:price});
   if(hist[ticker].length>90)hist[ticker]=hist[ticker].slice(-90);
@@ -598,7 +598,7 @@ async function callAI(key,sys,usr){
   const r=await fetch('https://api.openai.com/v1/chat/completions',{
     method:'POST',
     headers:{'Content-Type':'application/json','Authorization':`Bearer ${key}`},
-    body:JSON.stringify({model:MODEL,messages:[{role:'system',content:sys},{role:'user',content:usr}],max_tokens:700,temperature:.7})
+    body:JSON.stringify({model:MODEL,messages:[{role:'system',content:sys},{role:'user',content:usr}],max_completion_tokens:700,temperature:.7})
   });
   if(!r.ok){const e=await r.json();throw new Error(e.error?.message||`HTTP ${r.status}`);}
   return(await r.json()).choices[0].message.content;
