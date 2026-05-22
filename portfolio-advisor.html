@@ -3,264 +3,160 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Germ Capital · Portfolio Intelligence</title>
+<title>Germ &amp; Hebba Capital Investment</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:       #050810;
-  --s1:       #0c1120;
-  --s2:       #111827;
-  --s3:       #1a2235;
-  --border:   #1e2d45;
-  --border2:  #2a3d5a;
-  --text:     #e8edf5;
-  --muted:    #5a7090;
-  --muted2:   #3a5070;
-  --green:    #00e5a0;
-  --blue:     #3d9eff;
-  --amber:    #ffb020;
-  --red:      #ff4560;
-  --purple:   #a855f7;
-  --teal:     #06b6d4;
-  --green-bg: #00120c;
-  --blue-bg:  #040e1e;
-  --amber-bg: #130d00;
-  --red-bg:   #130008;
+:root{
+  --bg:#050810;--s1:#0c1120;--s2:#111827;
+  --border:#1e2d45;--border2:#2a3d5a;
+  --text:#dce8f5;--muted:#7a94b0;--muted2:#5a7090;
+  --green:#00e5a0;--blue:#3d9eff;--amber:#ffb020;--red:#ff4560;--purple:#a855f7;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  font-family:'DM Mono',monospace;
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  background-image:
-    radial-gradient(ellipse at 20% 0%, rgba(61,158,255,0.05) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 100%, rgba(0,229,160,0.04) 0%, transparent 60%);
-}
-
+body{font-family:'DM Mono',monospace;background:var(--bg);color:var(--text);min-height:100vh;
+  background-image:radial-gradient(ellipse at 20% 0%,rgba(61,158,255,.05) 0%,transparent 60%),
+    radial-gradient(ellipse at 80% 100%,rgba(0,229,160,.04) 0%,transparent 60%);}
 /* ── HEADER ─────────────────────────────────── */
-header{
-  position:sticky;top:0;z-index:200;
-  background:rgba(5,8,16,0.92);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
-  padding:14px 20px;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.logo{
-  font-family:'Syne',sans-serif;
-  font-weight:800;font-size:1.05rem;
-  letter-spacing:0.12em;text-transform:uppercase;
-}
+header{position:sticky;top:0;z-index:200;background:rgba(5,8,16,.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase}
 .logo em{color:var(--blue);font-style:normal}
-.logo-sub{font-size:0.62rem;color:var(--muted);letter-spacing:0.08em;margin-top:2px;font-family:'DM Mono'}
-.header-right{text-align:right;font-size:0.68rem;color:var(--muted)}
-#mktBadge{font-size:0.7rem;margin-bottom:3px}
-.mk-open{color:var(--green)}
-.mk-closed{color:var(--muted)}
+.logo-sub{font-size:.56rem;color:var(--muted);letter-spacing:.08em;margin-top:2px}
+.hdr-r{text-align:right;font-size:.66rem;color:var(--muted)}
+#mktBadge{font-size:.68rem;margin-bottom:3px}
+.mko{color:var(--green)}.mkc{color:var(--muted)}
 .pulse{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);
   animation:pulse 1.5s ease-in-out infinite;margin-right:4px;vertical-align:middle}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.7)}}
-
-/* ── API KEY BAR ─────────────────────────────── */
-.keybar{
-  background:var(--s1);
-  border-bottom:1px solid var(--border);
-  padding:10px 20px;
-  display:flex;gap:10px;align-items:center;flex-wrap:wrap;
-}
-.keybar input{
-  flex:1;min-width:220px;
-  background:var(--bg);
-  border:1px solid var(--border2);
-  color:var(--text);
-  padding:8px 12px;
-  border-radius:6px;
-  font-size:0.78rem;font-family:'DM Mono',monospace;
-  transition:border-color 0.2s;
-}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+/* ── KEY BAR ─────────────────────────────────── */
+.keybar{background:var(--s1);border-bottom:1px solid var(--border);padding:9px 20px;
+  display:flex;gap:9px;align-items:center;flex-wrap:wrap;}
+.keybar input{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--border2);
+  color:var(--text);padding:7px 12px;border-radius:6px;font-size:.74rem;font-family:'DM Mono';transition:border-color .2s;}
 .keybar input:focus{outline:none;border-color:var(--blue)}
 .keybar input::placeholder{color:var(--muted2)}
-.btn{
-  padding:7px 14px;
-  border:1px solid transparent;
-  border-radius:6px;
-  font-size:0.75rem;font-weight:600;font-family:'DM Mono',monospace;
-  cursor:pointer;letter-spacing:0.04em;
-  transition:all 0.15s;white-space:nowrap;
-}
-.btn:hover{opacity:0.85;transform:translateY(-1px)}
+.btn{padding:7px 13px;border:1px solid transparent;border-radius:6px;font-size:.72rem;font-weight:600;
+  font-family:'DM Mono';cursor:pointer;letter-spacing:.04em;transition:all .15s;white-space:nowrap;}
+.btn:hover{opacity:.85;transform:translateY(-1px)}
 .btn:active{transform:translateY(0)}
-.btn:disabled{opacity:0.4;cursor:not-allowed;transform:none}
-.btn-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
-.btn-ghost{background:transparent;color:var(--muted);border-color:var(--border2)}
-.btn-ghost.active{color:var(--green);border-color:var(--green)}
-.warn-note{font-size:0.65rem;color:var(--amber);opacity:0.8}
-
-/* ── MAIN LAYOUT ─────────────────────────────── */
-main{max-width:1100px;margin:0 auto;padding:20px}
-
-/* ── SUMMARY BAR ─────────────────────────────── */
-.sum-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
-  gap:10px;margin-bottom:24px;
-}
-.sum-card{
-  background:var(--s2);border:1px solid var(--border);
-  border-radius:10px;padding:12px 14px;
-  transition:border-color 0.2s;
-}
-.sum-card:hover{border-color:var(--border2)}
-.sum-label{font-size:0.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5px}
-.sum-val{font-size:1.15rem;font-weight:500;font-family:'Syne',sans-serif;line-height:1.2}
-.sum-sub{font-size:0.65rem;color:var(--muted);margin-top:3px}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-p{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn-g{background:transparent;color:var(--muted);border-color:var(--border2)}
+.btn-g:hover{color:var(--text);border-color:var(--border2)}
+.btn-g.active{color:var(--green);border-color:var(--green)}
+.btn-sm{padding:4px 9px;font-size:.65rem;border-radius:5px}
+/* ── MANUAL PANEL ────────────────────────────── */
+#manualPanel{display:none;background:var(--s1);border-bottom:1px solid var(--border);padding:10px 20px}
+.mp-note{font-size:.64rem;color:var(--amber);margin-bottom:8px}
+.mp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:7px}
+.mp-grid label{font-size:.58rem;color:var(--muted);display:block;margin-bottom:2px}
+.mp-grid input{width:100%;background:var(--bg);border:1px solid var(--border2);color:var(--text);
+  padding:4px 7px;border-radius:4px;font-size:.72rem;font-family:'DM Mono';}
+/* ── MAIN ────────────────────────────────────── */
+main{max-width:1100px;margin:0 auto;padding:16px}
+/* ── SUMMARY ─────────────────────────────────── */
+.sum-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:9px;margin-bottom:10px}
+.cash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:9px;margin-bottom:18px}
+.sum-card,.cash-card{background:var(--s2);border:1px solid var(--border);border-radius:10px;padding:11px 13px;transition:border-color .2s}
+.sum-card:hover,.cash-card:hover{border-color:var(--border2)}
+.s-lbl{font-size:.57rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+.s-val{font-size:1.05rem;font-weight:500;font-family:'Syne',sans-serif;line-height:1.2}
+.s-sub{font-size:.61rem;color:var(--muted);margin-top:2px}
 .pos{color:var(--green)}.neg{color:var(--red)}.neu{color:var(--muted)}
-
 /* ── SECTION HEADER ──────────────────────────── */
-.sec-hdr{
-  font-size:0.62rem;font-weight:600;
-  text-transform:uppercase;letter-spacing:0.15em;
-  color:var(--muted);margin:24px 0 12px;
-  padding-bottom:8px;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:8px;
-}
-.sec-hdr::before{content:'';display:inline-block;width:3px;height:12px;border-radius:2px;background:var(--blue)}
-
+.sec-hdr{font-size:.58rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);
+  margin:20px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.sec-hdr::before{content:'';display:inline-block;width:3px;height:11px;border-radius:2px;background:var(--blue)}
 /* ── HOLDINGS GRID ───────────────────────────── */
-.h-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
-  gap:12px;margin-bottom:8px;
-}
-.h-card{
-  background:var(--s2);border:1px solid var(--border);
-  border-radius:12px;padding:16px;
-  position:relative;overflow:hidden;
-  transition:border-color 0.2s,transform 0.2s;
-}
+.h-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:11px;margin-bottom:8px}
+/* ── HOLDING CARD ────────────────────────────── */
+.h-card{background:var(--s2);border:1px solid var(--border);border-radius:12px;padding:14px;
+  position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
 .h-card:hover{transform:translateY(-2px);border-color:var(--border2)}
-.h-card::before{
-  content:'';position:absolute;top:0;left:0;
-  width:3px;height:100%;border-radius:2px 0 0 2px;
-}
+.h-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;border-radius:2px 0 0 2px}
 .h-card.s-GOOD::before{background:var(--green)}
 .h-card.s-WATCH::before{background:var(--blue)}
 .h-card.s-WARN::before{background:var(--amber)}
-.h-card.s-URGENT::before{background:var(--red);
-  box-shadow:0 0 12px var(--red)}
-.h-card.s-URGENT{border-color:rgba(255,69,96,0.3);
-  background:linear-gradient(135deg,#0d0005 0%,var(--s2) 100%)}
-
-.h-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
-.h-ticker{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700}
-.h-name{font-size:0.66rem;color:var(--muted);margin-top:2px;line-height:1.4}
-.badges{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
-.badge{
-  font-size:0.58rem;font-weight:600;
-  padding:2px 7px;border-radius:20px;
-  text-transform:uppercase;letter-spacing:0.06em;
-  font-family:'DM Mono';
-}
-.b-tfsa{background:rgba(61,158,255,0.12);color:var(--blue);border:1px solid rgba(61,158,255,0.2)}
-.b-rrsp{background:rgba(0,229,160,0.1);color:var(--green);border:1px solid rgba(0,229,160,0.15)}
-.b-GOOD{background:rgba(0,229,160,0.1);color:var(--green)}
-.b-WATCH{background:rgba(61,158,255,0.12);color:var(--blue)}
-.b-WARN{background:rgba(255,176,32,0.1);color:var(--amber)}
-.b-URGENT{background:rgba(255,69,96,0.15);color:var(--red);animation:blink 1s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.6}}
-
-.h-price-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
-.h-price{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:600}
-.h-chg{font-size:0.78rem;font-weight:500}
-
-.h-meta{font-size:0.68rem;color:var(--muted);margin-bottom:10px;display:flex;gap:12px;flex-wrap:wrap}
-
-.wbar-wrap{margin-bottom:12px}
-.wbar-lbl{display:flex;justify-content:space-between;font-size:0.65rem;color:var(--muted);margin-bottom:4px}
-.wbar{height:3px;background:var(--border);border-radius:2px;overflow:hidden}
-.wbar-fill{height:100%;border-radius:2px;transition:width 0.6s ease}
+.h-card.s-URGENT::before{background:var(--red);box-shadow:0 0 12px var(--red)}
+.h-card.s-URGENT{border-color:rgba(255,69,96,.3)}
+.h-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.h-ticker{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700}
+.h-name{font-size:.62rem;color:var(--muted);margin-top:2px;line-height:1.4}
+.badges{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.badge{font-size:.55rem;font-weight:600;padding:2px 6px;border-radius:20px;text-transform:uppercase;letter-spacing:.05em}
+.b-tfsa{background:rgba(61,158,255,.12);color:var(--blue);border:1px solid rgba(61,158,255,.2)}
+.b-rrsp{background:rgba(0,229,160,.1);color:var(--green);border:1px solid rgba(0,229,160,.15)}
+.b-GOOD{background:rgba(0,229,160,.1);color:var(--green)}
+.b-WATCH{background:rgba(61,158,255,.12);color:var(--blue)}
+.b-WARN{background:rgba(255,176,32,.1);color:var(--amber)}
+.b-URGENT{background:rgba(255,69,96,.15);color:var(--red);animation:blink 1s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.6}}
+.h-price-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.h-price{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:600}
+.h-chg{font-size:.73rem;font-weight:500}
+.h-meta{font-size:.63rem;color:var(--muted);margin-bottom:8px;display:flex;gap:10px;flex-wrap:wrap}
+/* ── HEALTH BAR ──────────────────────────────── */
+.hbar-wrap{margin-bottom:9px}
+.hbar-lbl{display:flex;justify-content:space-between;font-size:.61rem;margin-bottom:3px;flex-wrap:wrap;gap:3px}
+.hbar{height:4px;background:var(--border);border-radius:2px;overflow:visible;position:relative}
+.hbar-fill{height:100%;border-radius:2px;transition:width .5s ease}
+.hbar-target{position:absolute;top:-3px;width:2px;height:10px;background:rgba(255,255,255,.25);border-radius:1px;transform:translateX(-50%)}
 .wf-ok{background:var(--green)}.wf-warn{background:var(--amber)}.wf-urg{background:var(--red)}
-
-.advice{font-size:0.73rem;color:#8ba8c8;line-height:1.7}
-.advice p{margin-bottom:2px}
-.action-tag{
-  display:inline-block;margin-top:8px;
-  background:rgba(255,69,96,0.1);color:var(--red);
-  border:1px solid rgba(255,69,96,0.3);
-  border-radius:5px;padding:3px 9px;
-  font-size:0.65rem;font-weight:600;letter-spacing:0.05em;
-}
-.cost-row{font-size:0.65rem;color:var(--muted);margin-top:6px;border-top:1px solid var(--border);padding-top:6px}
-
+/* ── DIVIDEND ROW ────────────────────────────── */
+.div-row{font-size:.62rem;color:#b0c8e0;margin-bottom:8px;
+  background:rgba(61,158,255,.07);border:1px solid rgba(61,158,255,.12);
+  border-radius:5px;padding:5px 8px;line-height:1.75;}
+.div-row .hl{color:#60b0ff}
+/* ── ADVICE TEXT ─────────────────────────────── */
+.advice{font-size:.72rem;color:#c0d4e8;line-height:1.8}
+.advice p{margin-bottom:3px}
+.action-tag{display:inline-block;margin-top:6px;background:rgba(255,69,96,.12);color:#ff7090;
+  border:1px solid rgba(255,69,96,.3);border-radius:5px;padding:3px 8px;font-size:.62rem;font-weight:600;letter-spacing:.05em;}
+.cost-row{font-size:.61rem;color:var(--muted);margin-top:7px;border-top:1px solid var(--border);
+  padding-top:6px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:3px;}
+/* ── SPARKLINE ───────────────────────────────── */
+.spark-wrap{margin-top:9px;border-top:1px solid var(--border);padding-top:7px}
+.spark-lbl{font-size:.57rem;color:var(--muted2);margin-bottom:3px;text-transform:uppercase;letter-spacing:.08em}
 /* ── SPINNER ─────────────────────────────────── */
-.spin{
-  display:inline-block;width:14px;height:14px;
-  border:2px solid var(--border2);border-top-color:var(--blue);
-  border-radius:50%;animation:sp 0.7s linear infinite;
-}
+.spin{display:inline-block;width:13px;height:13px;border:2px solid var(--border2);border-top-color:var(--blue);
+  border-radius:50%;animation:sp .7s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-
 /* ── ADVISOR CARDS ───────────────────────────── */
-.adv-wrap{margin-bottom:16px}
-.adv-card{
-  border-radius:14px;padding:20px;
-  border:1px solid var(--border);
-  position:relative;overflow:hidden;
-}
-.adv-gordon{
-  background:linear-gradient(135deg,#05111f 0%,var(--s2) 60%);
-  border-color:#1a3050;
-}
-.adv-sigma{
-  background:linear-gradient(135deg,#0d0520 0%,var(--s2) 60%);
-  border-color:#2a1a45;
-}
-.adv-card::after{
-  content:'';position:absolute;top:0;right:0;
-  width:200px;height:200px;border-radius:50%;
-  opacity:0.04;transform:translate(40%,-40%);
-}
-.adv-gordon::after{background:var(--blue)}
-.adv-sigma::after{background:var(--purple)}
-
-.adv-hdr{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)}
-.adv-av{
-  width:44px;height:44px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;flex-shrink:0;
-}
-.av-g{background:rgba(61,158,255,0.15);border:1px solid rgba(61,158,255,0.2)}
-.av-s{background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.2)}
-.adv-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700}
-.adv-title{font-size:0.65rem;color:var(--muted);margin-top:2px}
-.adv-body{font-size:0.78rem;line-height:1.9;color:#8ba8c8;white-space:pre-wrap;min-height:50px}
-.adv-loading{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:0.78rem}
-.err{color:var(--red);font-size:0.75rem}
-
-/* ── FOOTER ──────────────────────────────────── */
-footer{
-  text-align:center;padding:20px;
-  font-size:0.62rem;color:var(--muted2);
-  border-top:1px solid var(--border);margin-top:16px;
-  letter-spacing:0.05em;
-}
-
+.adv-wrap{margin-bottom:12px}
+.adv-card{border-radius:14px;padding:17px;border:1px solid var(--border);position:relative;overflow:hidden}
+.adv-gordon{background:linear-gradient(135deg,#05111f 0%,var(--s2) 60%);border-color:#1a3050}
+.adv-sigma{background:linear-gradient(135deg,#0d0520 0%,var(--s2) 60%);border-color:#2a1a45}
+.adv-card::after{content:'';position:absolute;top:0;right:0;width:160px;height:160px;border-radius:50%;
+  opacity:.04;transform:translate(40%,-40%)}
+.adv-gordon::after{background:var(--blue)}.adv-sigma::after{background:var(--purple)}
+.adv-hdr{display:flex;align-items:center;gap:12px;margin-bottom:13px;padding-bottom:11px;border-bottom:1px solid var(--border)}
+.adv-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.av-g{background:rgba(61,158,255,.15);border:1px solid rgba(61,158,255,.2)}
+.av-s{background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.2)}
+.adv-meta{flex:1}
+.adv-name{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:700}
+.adv-title{font-size:.6rem;color:var(--muted);margin-top:2px}
+/* ── ADVISOR BODY ────────────────────────────── */
+.adv-body{font-size:.76rem;line-height:1.9;color:#ccdded;min-height:48px}
+.adv-body strong{color:#e8f2fc;font-weight:600}
+.adv-body em{color:#a8c8e8;font-style:italic}
+.adv-body .md-bullet{display:block;padding-left:14px;margin:2px 0;position:relative}
+.adv-body .md-bullet::before{content:'·';position:absolute;left:4px;color:var(--blue)}
+.adv-body .md-br{display:block;height:.5em}
+.adv-loading{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.74rem}
 /* ── PLACEHOLDER ─────────────────────────────── */
-.placeholder{
-  color:var(--muted);font-size:0.78rem;
-  padding:30px;text-align:center;
-  border:1px dashed var(--border);border-radius:10px;
-  grid-column:1/-1;
-}
-
+.placeholder{color:var(--muted);font-size:.74rem;padding:26px;text-align:center;
+  border:1px dashed var(--border);border-radius:10px;grid-column:1/-1}
+/* ── FOOTER ──────────────────────────────────── */
+footer{text-align:center;padding:16px;font-size:.58rem;color:var(--muted2);
+  border-top:1px solid var(--border);margin-top:12px;letter-spacing:.05em}
 /* ── RESPONSIVE ──────────────────────────────── */
 @media(max-width:600px){
   .keybar{flex-direction:column}
   .keybar input{width:100%;min-width:unset}
-  .sum-grid{grid-template-columns:repeat(2,1fr)}
-  main{padding:14px}
+  .sum-grid,.cash-grid{grid-template-columns:repeat(2,1fr)}
+  main{padding:11px}
   .h-grid{grid-template-columns:1fr}
 }
 </style>
@@ -269,399 +165,433 @@ footer{
 
 <header>
   <div>
-    <div class="logo">💼 <em>HEBBA&GERM</em> CAPITAL</div>
-    <div class="logo-sub">Portfolio Intelligence · CIBC TFSA + RRSP</div>
+    <div class="logo">💼 <em>GERM &amp; HEBBA</em> CAPITAL</div>
+    <div class="logo-sub">Investment Intelligence · CIBC TFSA &amp; RRSP · Gordon: GPT-5.5 · Sigma: GPT-4o</div>
   </div>
-  <div class="header-right">
-    <div id="mktBadge" class="mk-closed">● Market Closed</div>
+  <div class="hdr-r">
+    <div id="mktBadge" class="mkc">● Market Closed</div>
     <div id="refreshTime">—</div>
   </div>
 </header>
 
 <div class="keybar">
   <input type="password" id="apiKey"
-    placeholder="🔑 Paste OpenAI key here (session memory only — never commit to GitHub)"
+    placeholder="🔑 OpenAI API key (saved locally between sessions)"
     onkeydown="if(event.key==='Enter')doRefresh()" />
-  <button class="btn btn-primary" onclick="doRefresh()" id="refreshBtn">↻  Refresh</button>
-  <button class="btn btn-ghost" onclick="toggleAuto()" id="autoBtn">Auto: OFF</button>
+  <button class="btn btn-p" onclick="doRefresh()" id="refreshBtn">↻ Refresh All</button>
+  <button class="btn btn-g" onclick="toggleAuto()" id="autoBtn">Auto: OFF</button>
+  <button class="btn btn-g" onclick="clearHistory()" title="Clear price history">🗑 History</button>
 </div>
 
-<!-- Manual price override panel -->
-<div id="manualPanel" style="display:none;background:var(--s1);border-bottom:1px solid var(--border);padding:12px 20px;">
-  <div style="font-size:0.68rem;color:var(--amber);margin-bottom:10px;">
-    ⚠ Auto-fetch blocked (likely running inside Claude preview). 
-    <strong style="color:var(--text)">Host on GitHub Pages</strong> for live data, 
-    or enter prices manually below.
-    <a href="https://pages.github.com" target="_blank" style="color:var(--blue);margin-left:6px;">GitHub Pages guide →</a>
+<div id="manualPanel">
+  <div class="mp-note">⚠ Auto-fetch blocked (Claude preview). Enter prices manually, or host on GitHub Pages for live data:</div>
+  <div class="mp-grid" id="manualInputs"></div>
+  <div style="margin-top:9px;display:flex;align-items:center;gap:12px">
+    <button class="btn btn-p" style="font-size:.68rem" onclick="applyManual()">▶ Use These Prices</button>
+    <a href="https://pages.github.com" target="_blank" style="font-size:.62rem;color:var(--blue)">GitHub Pages guide →</a>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:8px;" id="manualInputs"></div>
-  <button class="btn btn-primary" style="margin-top:10px;font-size:0.72rem" onclick="applyManual()">▶ Use These Prices</button>
 </div>
 
 <main>
   <div id="sumBar" style="display:none">
     <div class="sum-grid" id="sumGrid"></div>
+    <div class="cash-grid" id="cashGrid"></div>
   </div>
 
   <div class="sec-hdr">TFSA · Tax-Free Growth</div>
   <div class="h-grid" id="tfsaGrid">
-    <div class="placeholder">Hit ↻ Refresh to load live portfolio data.</div>
+    <div class="placeholder">Hit ↻ Refresh All to load live portfolio data.</div>
   </div>
 
   <div class="sec-hdr">RRSP · Tax-Deferred</div>
   <div class="h-grid" id="rrspGrid"></div>
 
-  <div class="sec-hdr" style="margin-top:32px">🧠 AI ADVISORS</div>
+  <div class="sec-hdr" style="margin-top:28px">🧠 AI ADVISORS</div>
 
+  <!-- GORDON -->
   <div class="adv-wrap">
     <div class="adv-card adv-gordon">
       <div class="adv-hdr">
         <div class="adv-av av-g">👨‍💼</div>
-        <div>
+        <div class="adv-meta">
           <div class="adv-name">Gordon</div>
-          <div class="adv-title">Portfolio Advisor · Full context · Goal-aware</div>
+          <div class="adv-title">Portfolio Advisor · GPT-5.5 · Full context · Goal &amp; dividend aware</div>
         </div>
+        <button class="btn btn-g btn-sm" id="gordonRefBtn" onclick="refreshGordon()" title="Refresh Gordon only">↻</button>
       </div>
-      <div class="adv-body" id="gordonBody" style="color:var(--muted)">Enter your API key and hit Refresh to hear from Gordon.</div>
+      <div class="adv-body" id="gordonBody" style="color:var(--muted)">Enter your API key and hit Refresh All to hear from Gordon.</div>
     </div>
   </div>
 
+  <!-- SIGMA -->
   <div class="adv-wrap">
     <div class="adv-card adv-sigma">
       <div class="adv-hdr">
-        <div class="adv-av av-s">🙍🏼</div>
-        <div>
+        <div class="adv-av av-s">👩‍💻</div>
+        <div class="adv-meta">
           <div class="adv-name">Sigma</div>
-          <div class="adv-title">Quantitative Analyst · Last 7 days only · No goal context</div>
+          <div class="adv-title">Quantitative Analyst · GPT-4o · Last 7 days only · No goal context</div>
         </div>
+        <button class="btn btn-g btn-sm" id="sigmaRefBtn" onclick="refreshSigma()" title="Refresh Sigma only">↻</button>
       </div>
-      <div class="adv-body" id="sigmaBody" style="color:var(--muted)">Sigma crunches historical price data only — no strategy knowledge.</div>
+      <div class="adv-body" id="sigmaBody" style="color:var(--muted)">Sigma crunches raw price history — no strategy knowledge.</div>
     </div>
   </div>
 </main>
 
 <footer>
-  GERM CAPITAL DASHBOARD · Personal use only · Not financial advice ·
-  Prices: Yahoo Finance via allorigins.win · AI: OpenAI GPT-4o-mini · Inception: Apr 22 2026 @ $105,216.82
+  GERM &amp; HEBBA CAPITAL INVESTMENT · Personal use only · Not financial advice ·
+  Prices: Yahoo Finance · AI: OpenAI GPT-5.5 / GPT-4o · Inception: Apr 22 2026 @ $105,216.82
 </footer>
 
 <script>
 // ═══════════════════════════════════════════════
-//  PORTFOLIO CONFIGURATION
+//  CONSTANTS
 // ═══════════════════════════════════════════════
-const INCEPTION = 105216.82;
+const MODEL_GORDON = 'gpt-5.5';
+const MODEL_SIGMA  = 'gpt-4o';
+
+const INCEPTION      = 105216.82;
+const INCEPTION_DATE = '2026-04-22';
+
+// Update manually if cash balances change
+const CASH = { TFSA: 24.85, RRSP: 105.44 }; // Update manually if cash changes
+
+const COST = {
+  'XEQT.TO': 42.14,
+  'XSP.TO' : 69.23,
+  'XEF.TO' : 48.50,
+  'XRB.TO' : 22.90,
+  'XIC.TO' : 54.06,
+  'ZAG.TO' : 13.69,
+  'XEC.TO' : 41.64,
+  'HDIV.TO': 23.21,
+};
+
+const DIV = {
+  'XEQT.TO':{ freq:'Quarterly',   mo:[3,6,9,12], day:20, y:0.0157 },
+  'XSP.TO' :{ freq:'Quarterly',   mo:[3,6,9,12], day:20, y:0.0120 },
+  'XEF.TO' :{ freq:'Quarterly',   mo:[3,6,9,12], day:20, y:0.0260 },
+  'XRB.TO' :{ freq:'Monthly',     mo:[1,2,3,4,5,6,7,8,9,10,11,12], day:20, y:0.0270 },
+  'XIC.TO' :{ freq:'Quarterly',   mo:[3,6,9,12], day:20, y:0.0207 },
+  'ZAG.TO' :{ freq:'Monthly',     mo:[1,2,3,4,5,6,7,8,9,10,11,12], day:20, y:0.0345 },
+  'XEC.TO' :{ freq:'Quarterly',   mo:[3,6,9,12], day:20, y:0.0250 },
+  'HDIV.TO':{ freq:'Monthly',     mo:[1,2,3,4,5,6,7,8,9,10,11,12], day:28, y:0.0972 },
+};
 
 const HOLDINGS = [
-  {
-    ticker:'XEQT.TO', short:'XEQT', name:'iShares Core Equity ETF Portfolio',
-    shares:490, account:'TFSA', target:19.6, cost:42.38,
-    note:'Core global all-equity. DRIP enabled. Single-fund TFSA strategy.'
-  },
-  {
-    ticker:'XSP.TO', short:'XSP', name:'iShares Core S&P 500 CAD Hedged',
-    shares:400, account:'RRSP', target:27.6, cost:69.23,
-    note:'US large cap, CAD-hedged. Forfeits ~15bps/yr on US dividends (treaty drag in RRSP).'
-  },
-  {
-    ticker:'XEF.TO', short:'XEF', name:'iShares Core MSCI EAFE IMI',
-    shares:400, account:'RRSP', target:18.5, cost:48.50,
-    note:'Developed ex-NA (Europe, Japan, Australia). ~1,500 holdings.'
-  },
-  {
-    ticker:'XRB.TO', short:'XRB', name:'iShares Canadian Real Return Bond',
-    shares:500, account:'RRSP', target:10.6, cost:22.99,
-    note:'Real-return bonds. Trimmed from 1,000 to 500 in late Apr. Watch for further weakness.'
-  },
-  {
-    ticker:'XIC.TO', short:'XIC', name:'iShares Core S&P/TSX Capped Composite',
-    shares:140, account:'RRSP', target:7.1, cost:54.06,
-    note:'Canadian broad market. Filled home-country gap in early May.'
-  },
-  {
-    ticker:'ZAG.TO', short:'ZAG', name:'BMO Aggregate Bond Index ETF',
-    shares:490, account:'RRSP', target:6.2, cost:13.69,
-    note:'Aggregate bond diversifier. Monthly distributions ~3.45% yield.'
-  },
-  {
-    ticker:'XEC.TO', short:'XEC', name:'iShares Core MSCI Emerging Markets IMI',
-    shares:135, account:'RRSP', target:5.5, cost:41.64,
-    note:'EM exposure (China, India, Taiwan, Brazil). Higher vol, growth tilt.'
-  },
-  {
-    ticker:'CAE.TO', short:'CAE', name:'CAE Inc.',
-    shares:150, account:'RRSP', target:5.0, cost:34.90,
-    note:'Single stock. Active trailing stop limit (~10% below recent high). Max 7% of portfolio.'
-  }
+  {ticker:'XEQT.TO',short:'XEQT',name:'iShares Core Equity ETF Portfolio',    shares:490,account:'TFSA',target:19.6},
+  {ticker:'XSP.TO', short:'XSP', name:'iShares Core S&P 500 CAD Hedged',       shares:400,account:'RRSP',target:27.6},
+  {ticker:'XEF.TO', short:'XEF', name:'iShares Core MSCI EAFE IMI',            shares:400,account:'RRSP',target:18.5},
+  {ticker:'XRB.TO', short:'XRB', name:'iShares Canadian Real Return Bond',      shares:500,account:'RRSP',target:10.6},
+  {ticker:'XIC.TO', short:'XIC', name:'iShares Core S&P/TSX Capped Composite', shares:140,account:'RRSP',target:7.1 },
+  {ticker:'ZAG.TO', short:'ZAG', name:'BMO Aggregate Bond Index ETF',           shares:490,account:'RRSP',target:6.2 },
+  {ticker:'XEC.TO', short:'XEC', name:'iShares Core MSCI Emerging Markets IMI',shares:135,account:'RRSP',target:5.5 },
+  {ticker:'HDIV.TO',short:'HDIV',name:'Hamilton Enhanced Canadian Covered Call',  shares:216,account:'RRSP',target:4.6 },
 ];
 
 // ═══════════════════════════════════════════════
-//  STATE
+//  STATE (shared between refresh functions)
 // ═══════════════════════════════════════════════
+let lastPm    = null;
+let lastTotal = 0;
 let autoTimer = null;
-let isAuto = false;
-let cachedPrices = {};
+let isAuto    = false;
+const manualPrices = {};
 
 // ═══════════════════════════════════════════════
-//  PRICE FETCHING — multi-proxy with fallback
+//  LOCALSTORAGE
 // ═══════════════════════════════════════════════
-const PROXY_FNS = [
-  u => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
-  u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
-  u => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
-];
-
-async function fetchTicker(ticker) {
-  const yahooUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=10d`;
-
-  let lastErr = null;
-  for (const proxyFn of PROXY_FNS) {
-    try {
-      const res = await fetch(proxyFn(yahooUrl), { cache:'no-store' });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const json = await res.json();
-      const r = json?.chart?.result?.[0];
-      if (!r) throw new Error('No result in response');
-      const meta = r.meta;
-      const closes = r.indicators?.quote?.[0]?.close || [];
-      const ts = r.timestamp || [];
-      const valid = closes.map((c,i) => ({c, t:ts[i]})).filter(d => d.c != null);
-      const cur  = meta.regularMarketPrice ?? valid.at(-1)?.c ?? 0;
-      const prev = meta.previousClose ?? meta.chartPreviousClose ?? valid.at(-2)?.c ?? cur;
-      return {
-        ticker, cur, prev,
-        chg: cur - prev,
-        chgPct: ((cur - prev) / prev) * 100,
-        state: meta.marketState ?? 'CLOSED',
-        hist: valid.slice(-8).map(d => d.c)
-      };
-    } catch(e) {
-      lastErr = e;
-      console.warn(`Proxy failed for ${ticker}:`, e.message);
-    }
+function loadHist(){try{return JSON.parse(localStorage.getItem('gc_hist')||'{}')}catch{return{}}}
+function saveHist(h){try{localStorage.setItem('gc_hist',JSON.stringify(h))}catch(e){console.warn('Storage full',e)}}
+function ensureInception(hist,ticker){
+  if(!hist[ticker]||!hist[ticker].length)
+    hist[ticker]=[{ts:INCEPTION_DATE,p:COST[ticker]}];
+}
+function addPt(hist,ticker,price){
+  if(price<=0)return;
+  ensureInception(hist,ticker);
+  // Keyed by hour — one point per hour max
+  const key=new Date().toISOString().slice(0,13);
+  hist[ticker]=hist[ticker].filter(d=>d.ts!==key);
+  hist[ticker].push({ts:key,p:price});
+  if(hist[ticker].length>90)hist[ticker]=hist[ticker].slice(-90);
+}
+function clearHistory(){
+  if(confirm('Clear all stored price history?')){
+    localStorage.removeItem('gc_hist');
+    alert('History cleared.');
   }
-
-  // All proxies failed — check if user has a manual override
-  const manual = manualPrices[ticker];
-  if (manual) {
-    console.info(`Using manual price for ${ticker}: $${manual}`);
-    return { ticker, cur: manual, prev: manual, chg: 0, chgPct: 0, state: 'MANUAL', hist: [] };
-  }
-
-  throw new Error(lastErr?.message || 'All proxies failed');
 }
 
-// Manual price overrides (user can set these if API fails)
-const manualPrices = {};
+// ═══════════════════════════════════════════════
+//  MARKDOWN RENDERER
+// ═══════════════════════════════════════════════
+function renderMd(text){
+  if(!text)return'<em style="color:var(--muted)">No response.</em>';
+  // Escape HTML first
+  let s=text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  // Bold **text**
+  s=s.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  // Italic *text*
+  s=s.replace(/\*([^\*]+?)\*/g,'<em>$1</em>');
+  // Bullet lines starting with - or •
+  s=s.replace(/^[\-•] (.+)$/gm,'<span class="md-bullet">$1</span>');
+  // Double newline → paragraph break
+  s=s.replace(/\n\n+/g,'<span class="md-br"></span>');
+  // Single newline → br
+  s=s.replace(/\n/g,'<br>');
+  return s;
+}
+
+// ═══════════════════════════════════════════════
+//  DIVIDEND HELPERS
+// ═══════════════════════════════════════════════
+function nextDiv(info){
+  const now=new Date();
+  const cands=[...info.mo,...info.mo.map(m=>m+12)];
+  for(const m of cands){
+    const yr=now.getFullYear()+(m>12?1:0),mo=m>12?m-12:m;
+    const d=new Date(yr,mo-1,info.day);
+    if(d>now)return d;
+  }
+  return null;
+}
+function fmtD(d){return d.toLocaleDateString('en-CA',{month:'short',day:'numeric',year:'numeric'})}
+function divPerPmt(info,price){return price*info.y/(info.freq==='Monthly'?12:info.freq==='Semi-annual'?2:4)}
+function divCard(ticker,price,shares){
+  const info=DIV[ticker];if(!info)return'';
+  const nd=nextDiv(info);
+  const pps=divPerPmt(info,price);
+  const est=(pps*shares).toFixed(2);
+  return`<div class="div-row">
+    💰 <span class="hl">${info.freq}</span> · Next est. <span class="hl">${nd?fmtD(nd):'TBD'}</span><br>
+    ~$${pps.toFixed(4)}/share · <span class="hl">$${est} CAD</span> for ${shares} shares
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════
+//  SPARKLINE
+// ═══════════════════════════════════════════════
+function sparkline(pts){
+  if(!pts||pts.length<2)
+    return'<div style="text-align:center;color:var(--muted2);font-size:.58rem;padding:6px 0">Building history — each Refresh adds a point</div>';
+  const px=pts.map(p=>p.p),W=280,H=50;
+  const mn=Math.min(...px),mx=Math.max(...px),rng=mx-mn||.01;
+  const co=pts.map((d,i)=>[+((i/(pts.length-1))*W).toFixed(1),+(H-4-((d.p-mn)/rng)*(H-8)).toFixed(1)]);
+  const poly=co.map(c=>c.join(',')).join(' ');
+  const area=`0,${H} ${poly} ${W},${H}`;
+  const first=px[0],last=px[px.length-1],isUp=last>=first;
+  const col=isUp?'var(--green)':'var(--red)';
+  const gid='g'+Math.random().toString(36).slice(2,7);
+  const chg=((last-first)/first*100).toFixed(1);
+  const sign=isUp?'+':'';
+  const dots=co.map((c,i)=>{
+    const r=i===0||i===co.length-1?i===co.length-1?3:2:1.5;
+    const fill=i===co.length-1?col:i===0?'rgba(255,255,255,.3)':col;
+    const op=i===0||i===co.length-1?1:.5;
+    return`<circle cx="${c[0]}" cy="${c[1]}" r="${r}" fill="${fill}" opacity="${op}"/>`;
+  }).join('');
+  return`<div class="spark-wrap">
+    <div class="spark-lbl">Price history (${pts.length} pts · Apr 22 → now)</div>
+    <svg width="100%" height="${H}" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
+      <defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="${col}" stop-opacity=".18"/>
+        <stop offset="100%" stop-color="${col}" stop-opacity="0"/>
+      </linearGradient></defs>
+      <polygon points="${area}" fill="url(#${gid})"/>
+      <polyline points="${poly}" fill="none" stroke="${col}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+      ${dots}
+    </svg>
+    <div style="display:flex;justify-content:space-between;font-size:.57rem;color:var(--muted);margin-top:3px">
+      <span>Apr 22: $${first.toFixed(2)}</span>
+      <span style="color:${col};font-weight:600">${sign}${chg}% since inception</span>
+      <span>Now: $${last.toFixed(2)}</span>
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════
+//  PRICE FETCHING — 3-proxy chain
+// ═══════════════════════════════════════════════
+const PROXIES=[
+  u=>`https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+  u=>`https://corsproxy.io/?${encodeURIComponent(u)}`,
+  u=>`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+];
+async function fetchTicker(ticker){
+  const yUrl=`https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=10d`;
+  let lastErr=null;
+  for(const pf of PROXIES){
+    try{
+      const r=await fetch(pf(yUrl),{cache:'no-store'});
+      if(!r.ok)throw new Error(`HTTP ${r.status}`);
+      const j=await r.json();
+      const res=j?.chart?.result?.[0];if(!res)throw new Error('Empty');
+      const meta=res.meta;
+      const cl=res.indicators?.quote?.[0]?.close||[];
+      const ts=res.timestamp||[];
+      const vd=cl.map((c,i)=>({c,t:ts[i]})).filter(d=>d.c!=null);
+      const cur=meta.regularMarketPrice??vd.at(-1)?.c??0;
+      const prev=meta.previousClose??meta.chartPreviousClose??vd.at(-2)?.c??cur;
+      return{ticker,cur,prev,chg:cur-prev,chgPct:((cur-prev)/prev)*100,state:meta.marketState??'CLOSED',hist:vd.slice(-8).map(d=>d.c)};
+    }catch(e){lastErr=e;}
+  }
+  if(manualPrices[ticker]){const p=manualPrices[ticker];return{ticker,cur:p,prev:p,chg:0,chgPct:0,state:'MANUAL',hist:[]};}
+  throw lastErr||new Error('All proxies failed');
+}
 
 // ═══════════════════════════════════════════════
 //  ADVICE ENGINE
 // ═══════════════════════════════════════════════
-function advice(cfg, pd, total) {
-  const { short, shares, target, cost } = cfg;
-  const { cur, prev, chg, chgPct } = pd;
-  const mv = cur * shares;
-  const wt = (mv / total) * 100;
-  const drift = wt - target;
+function advice(cfg,pd,total){
+  const{short,shares,target,ticker}=cfg;
+  const{cur,chgPct}=pd;
+  const mv=cur*shares,wt=(mv/total)*100;
+  const cost=COST[ticker];
+  let status='GOOD',msgs=[],action=null;
+  const up=n=>chgPct>=n,dn=n=>chgPct<=n;
+  const bump=s=>{const o=['GOOD','WATCH','WARN','URGENT'];if(o.indexOf(s)>o.indexOf(status))status=s;};
 
-  let status = 'GOOD';
-  const msgs = [];
-  let action = null;
-
-  const up = n => chgPct >= n;
-  const dn = n => chgPct <= n;
-  const set = s => { if (['WATCH','WARN','URGENT'].indexOf(s) > ['WATCH','WARN','URGENT'].indexOf(status)) status = s; };
-
-  switch(short) {
-
-    case 'XEQT': {
-      if (wt > 25) {
-        set('WARN');
-        const sell = Math.ceil(((wt - 20) / 100 * total) / cur);
-        msgs.push(`⚠️ TRIM ALERT: ${wt.toFixed(1)}% of portfolio (limit: 25%). Sell ~${sell} shares to return to 20%.`);
-        action = `Sell ~${sell} XEQT`;
-      } else if (wt > 22) {
-        set('WATCH');
-        msgs.push(`👀 Approaching trim limit at ${wt.toFixed(1)}% (trigger: 25%). Watch.`);
-      } else if (wt < 17) {
-        set('WATCH');
-        msgs.push(`📊 Below target at ${wt.toFixed(1)}% (target: 19.6%). Top up with next contribution.`);
-      } else {
-        msgs.push(`✅ Core position healthy at ${wt.toFixed(1)}% (target: 19.6%). No action.`);
-      }
-      if (dn(-5)) { set('WATCH'); msgs.push(`🌍 Global selloff (${chgPct.toFixed(1)}%). XEQT holds 9,000+ companies — stay the course.`); }
-      else if (dn(-2)) msgs.push(`📉 Modest dip (${chgPct.toFixed(1)}%). Normal ETF noise.`);
-      else if (up(5)) msgs.push(`🚀 Big rally (+${chgPct.toFixed(1)}%). Verify weight stays under 25%.`);
-      else if (up(2)) msgs.push(`📈 Good day for global equities (+${chgPct.toFixed(1)}%).`);
-      msgs.push(`💡 DRIP active in TFSA — distributions auto-reinvest each quarter.`);
+  switch(short){
+    case'XEQT':{
+      if(wt>25){bump('WARN');const sell=Math.ceil(((wt-20)/100*total)/cur);msgs.push(`⚠️ Trim threshold breached at ${wt.toFixed(1)}% (limit: 25%). Sell ~${sell} shares → back to 20%.`);action=`Sell ~${sell} XEQT`;}
+      else if(wt>22){bump('WATCH');msgs.push(`👀 Approaching trim limit at ${wt.toFixed(1)}% (trigger: 25%).`);}
+      else if(wt<17){bump('WATCH');msgs.push(`📊 Below target at ${wt.toFixed(1)}% (target: 19.6%). Top up with next contribution.`);}
+      else msgs.push(`✅ Core position healthy at ${wt.toFixed(1)}% (target: 19.6%).`);
+      if(dn(-5)){bump('WATCH');msgs.push(`🌍 Global selloff (${chgPct.toFixed(1)}%). XEQT holds 9,000+ companies — stay the course.`);}
+      else if(dn(-2))msgs.push(`📉 Modest dip (${chgPct.toFixed(1)}%). Normal volatility.`);
+      else if(up(5))msgs.push(`🚀 Strong rally (+${chgPct.toFixed(1)}%). Verify weight stays under 25%.`);
+      else if(up(2))msgs.push(`📈 Good day for global equities (+${chgPct.toFixed(1)}%).`);
+      msgs.push(`💡 DRIP active in TFSA — quarterly distributions auto-compound.`);
       break;
     }
-
-    case 'XSP': {
-      if (wt > 33) { set('WATCH'); msgs.push(`🇺🇸 US exposure elevated at ${wt.toFixed(1)}% (target: 27.6%). Watch for further drift.`); }
-      else if (wt < 22) { set('WATCH'); msgs.push(`🇺🇸 US below target at ${wt.toFixed(1)}% (target: 27.6%). Add on next rebalance.`); }
+    case'XSP':{
+      if(wt>33){bump('WATCH');msgs.push(`🇺🇸 US elevated at ${wt.toFixed(1)}% (target: 27.6%). Monitor drift.`);}
+      else if(wt<22){bump('WATCH');msgs.push(`🇺🇸 US below target at ${wt.toFixed(1)}%. Add on next rebalance.`);}
       else msgs.push(`✅ US large cap on target at ${wt.toFixed(1)}%.`);
-      msgs.push(`💱 CAD-hedged: protected from USD/CAD swings but costs ~15bps/yr on US dividend treaty in RRSP.`);
-      if (dn(-2)) msgs.push(`📉 S&P 500 pullback (${chgPct.toFixed(1)}%). Normal correction activity.`);
-      else if (up(2)) msgs.push(`📈 Strong US session (+${chgPct.toFixed(1)}%).`);
+      msgs.push(`💱 CAD-hedged: no USD risk, ~15bps/yr treaty drag on US dividends in RRSP.`);
+      if(dn(-2))msgs.push(`📉 S&P 500 pullback (${chgPct.toFixed(1)}%).`);
+      else if(up(2))msgs.push(`📈 Strong US session (+${chgPct.toFixed(1)}%).`);
       break;
     }
-
-    case 'XEF': {
-      if (wt < 14) { set('WATCH'); msgs.push(`🌍 EAFE underweight at ${wt.toFixed(1)}% (target: 18.5%). Add on next contribution.`); }
-      else if (wt > 25) { set('WATCH'); msgs.push(`🌍 EAFE above target at ${wt.toFixed(1)}%. Consider trimming on next rebalance.`); }
+    case'XEF':{
+      if(wt<14){bump('WATCH');msgs.push(`🌍 EAFE underweight at ${wt.toFixed(1)}% (target: 18.5%).`);}
+      else if(wt>25){bump('WATCH');msgs.push(`🌍 EAFE above target at ${wt.toFixed(1)}%. Trim on next rebalance.`);}
       else msgs.push(`✅ International developed on track at ${wt.toFixed(1)}%.`);
-      if (dn(-2)) msgs.push(`📉 EAFE weakness (${chgPct.toFixed(1)}%). Europe/Japan softness.`);
-      else if (up(2)) msgs.push(`📈 International markets positive (+${chgPct.toFixed(1)}%).`);
+      if(dn(-2))msgs.push(`📉 EAFE weakness (${chgPct.toFixed(1)}%). Europe/Japan softness.`);
+      else if(up(2))msgs.push(`📈 International positive (+${chgPct.toFixed(1)}%).`);
       break;
     }
-
-    case 'XRB': {
-      if (cur < 21) {
-        set('WARN');
-        msgs.push(`⚠️ XRB below $21 — real yield stress. Seriously consider trimming remaining 500 shares.`);
-        action = 'Consider selling 250 XRB';
-      } else if (cur < 22) {
-        set('WATCH');
-        msgs.push(`👀 XRB approaching $22 floor. Watch for persistence before acting.`);
-      } else if (cur > 23.50) {
-        msgs.push(`✅ XRB recovering above $23.50. Real rate environment easing.`);
-      } else {
-        msgs.push(`📊 XRB in holding range ($22–$23.50). Inflation hedge intact.`);
-      }
-      if (dn(-1.5)) { set('WATCH'); msgs.push(`📉 Bond selloff (${chgPct.toFixed(1)}%). Persistent weakness pattern — monitor.`); }
-      else if (up(1)) msgs.push(`📈 Bond rally today (+${chgPct.toFixed(1)}%). Rate expectations softening.`);
-      msgs.push(`ℹ️ Trimmed from 1,000→500 shares at $22.99 in Apr. Good call given continued weakness.`);
+    case'XRB':{
+      if(cur<21){bump('WARN');msgs.push(`⚠️ XRB below $21 — real yield stress. Consider trimming.`);action='Consider selling 250 XRB';}
+      else if(cur<22){bump('WATCH');msgs.push(`👀 XRB near $22 floor. Watch for persistence.`);}
+      else if(cur>23.5)msgs.push(`✅ XRB recovering above $23.50. Rate environment easing.`);
+      else msgs.push(`📊 XRB in holding range ($22–$23.50). Inflation hedge intact.`);
+      if(dn(-1.5)){bump('WATCH');msgs.push(`📉 Bond selloff (${chgPct.toFixed(1)}%). Monitor persistence.`);}
+      else if(up(1))msgs.push(`📈 Bond rally (+${chgPct.toFixed(1)}%).`);
+      msgs.push(`ℹ️ Trimmed 1,000→500 shares at $22.99 in April.`);
       break;
     }
-
-    case 'XIC': {
-      if (wt > 10) { set('WATCH'); msgs.push(`🍁 Canadian equity elevated at ${wt.toFixed(1)}% (target: 7.1%). Trim if sustained above 10%.`); }
-      else if (wt < 5) { set('WATCH'); msgs.push(`🍁 Canadian equity below target at ${wt.toFixed(1)}% (target: 7.1%). Add on next contribution.`); }
-      else msgs.push(`✅ Canadian market allocation on target at ${wt.toFixed(1)}%.`);
-      if (dn(-1.5)) msgs.push(`📉 TSX soft today (${chgPct.toFixed(1)}%). Oil/banks/financials driving.`);
-      else if (up(1.5)) msgs.push(`📈 TSX positive (+${chgPct.toFixed(1)}%).`);
+    case'XIC':{
+      if(wt>10){bump('WATCH');msgs.push(`🍁 Canadian equity elevated at ${wt.toFixed(1)}% (target: 7.1%).`);}
+      else if(wt<5){bump('WATCH');msgs.push(`🍁 Below target at ${wt.toFixed(1)}%.`);}
+      else msgs.push(`✅ Canadian market on target at ${wt.toFixed(1)}%.`);
+      if(dn(-1.5))msgs.push(`📉 TSX soft (${chgPct.toFixed(1)}%). Financials/energy driving.`);
+      else if(up(1.5))msgs.push(`📈 TSX positive (+${chgPct.toFixed(1)}%).`);
       break;
     }
-
-    case 'ZAG': {
-      msgs.push(`📊 ZAG at ${wt.toFixed(1)}% (target: 6.2%). Aggregate bond ballast doing its job.`);
-      if (up(0.5)) msgs.push(`📈 Bond rally today (+${chgPct.toFixed(1)}%). Rate expectations easing.`);
-      else if (dn(-0.5)) msgs.push(`📉 Modest pullback (${chgPct.toFixed(1)}%). Normal for aggregate bonds.`);
-      else msgs.push(`⚖️ Stable today. Low-vol ballast as intended.`);
-      msgs.push(`💰 Monthly distributions ~3.45% yield. No DRIP in RRSP — cash accumulates.`);
+    case'ZAG':{
+      msgs.push(`📊 ZAG at ${wt.toFixed(1)}% (target: 6.2%). Aggregate bond ballast stable.`);
+      if(up(0.5))msgs.push(`📈 Bond rally (+${chgPct.toFixed(1)}%).`);
+      else if(dn(-0.5))msgs.push(`📉 Modest pullback (${chgPct.toFixed(1)}%).`);
+      msgs.push(`💰 Monthly distributions (~3.45% yield) accumulate as RRSP cash.`);
       break;
     }
-
-    case 'XEC': {
-      if (wt > 8) { set('WATCH'); msgs.push(`🌏 EM elevated at ${wt.toFixed(1)}% (target: 5.5%). Trim on next rebalance.`); }
-      else if (wt < 4) { set('WATCH'); msgs.push(`🌏 EM below target at ${wt.toFixed(1)}% (target: 5.5%). Add on next contribution.`); }
+    case'XEC':{
+      if(wt>8){bump('WATCH');msgs.push(`🌏 EM elevated at ${wt.toFixed(1)}% (target: 5.5%). Trim on next rebalance.`);}
+      else if(wt<4){bump('WATCH');msgs.push(`🌏 EM below target at ${wt.toFixed(1)}%.`);}
       else msgs.push(`✅ Emerging markets on target at ${wt.toFixed(1)}%.`);
-      if (dn(-4)) { set('WATCH'); msgs.push(`📉 EM volatility (${chgPct.toFixed(1)}%). Expected for this sleeve — hold.`); }
-      else if (up(4)) msgs.push(`🚀 EM surge (+${chgPct.toFixed(1)}%). China/India/Taiwan driving.`);
+      if(dn(-4)){bump('WATCH');msgs.push(`📉 EM volatility (${chgPct.toFixed(1)}%). Expected — hold.`);}
+      else if(up(4))msgs.push(`🚀 EM surge (+${chgPct.toFixed(1)}%). China/India/Taiwan driving.`);
       break;
     }
-
-    case 'CAE': {
-      const estTrigger = Math.max(cur * 0.905, 33.50);
-      const cushion = cur - estTrigger;
-      const gainPct = cost ? ((cur - cost) / cost * 100) : 0;
-
-      if (cur < 33.50) {
-        set('URGENT');
-        msgs.push(`🚨 CAE BELOW TRAILING STOP TRIGGER (~$33.50). CHECK CIBC APP IMMEDIATELY — stop may have executed.`);
-        action = '⚠️ CHECK CIBC NOW';
-      } else if (cushion < 1.50) {
-        set('WARN');
-        msgs.push(`⚠️ CAE near stop trigger. Only $${cushion.toFixed(2)} of cushion above est. trigger ~$${estTrigger.toFixed(2)}.`);
-      } else if (cur > 42) {
-        msgs.push(`🎯 CAE running well. Trailing stop has followed price up significantly.`);
-        msgs.push(`🛡️ Est. current trigger: ~$${(cur * 0.905).toFixed(2)} (tracking 10% below current price).`);
-      } else {
-        msgs.push(`✅ CAE at $${cur.toFixed(2)}. Trailing stop active, est. trigger ~$${estTrigger.toFixed(2)}.`);
+    case'HDIV':{
+      const floor=18.50;
+      const cush=cur-floor;
+      const gainPct=cost?((cur-cost)/cost*100):null;
+      if(cur<floor){
+        bump('URGENT');
+        msgs.push(`🚨 HDIV below price floor $${floor}. Check CIBC — GTC stop may have executed.`);
+        action='⚠️ CHECK CIBC NOW';
+      }else if(cur<20.00){
+        bump('WARN');
+        msgs.push(`⚠️ HDIV approaching floor. $${cush.toFixed(2)} above GTC stop at $18.50.`);
+      }else{
+        msgs.push(`✅ HDIV $${cur.toFixed(2)}. ~10% yield running monthly. GTC floor stop at $18.50.`);
       }
-      if (wt > 7) {
-        set('WARN');
-        const trim = Math.ceil(((wt - 5) / 100 * total) / cur);
-        msgs.push(`⚠️ CAE exceeds 7% max single-stock limit at ${wt.toFixed(1)}%. Trim ~${trim} shares.`);
-        action = action || `Trim ~${trim} CAE`;
-      }
-      if (dn(-5)) { set('WARN'); msgs.push(`📉 Sharp drop (${chgPct.toFixed(1)}%). Check for company news or stop execution.`); }
-      else if (up(5)) msgs.push(`🚀 CAE surging (+${chgPct.toFixed(1)}%). Stop is automatically following the price up.`);
-      if (cost) msgs.push(`💡 Cost: ~$${cost.toFixed(2)} | Unrealized gain: ${gainPct >= 0 ? '+' : ''}${gainPct.toFixed(1)}%`);
+      if(wt>7){bump('WARN');msgs.push(`⚠️ HDIV elevated at ${wt.toFixed(1)}% — max income position. Review if above 7%.`);}
+      msgs.push(`💰 Monthly distribution ~$0.19/share ($${(0.19*shares).toFixed(2)} next pmt). Ex-div: ~last business day of month.`);
+      msgs.push(`⚡ 25% leverage internally — Canadian market drops are amplified ~1.25x. Normal for this structure.`);
+      if(dn(-3)){bump('WATCH');msgs.push(`📉 HDIV down (${chgPct.toFixed(1)}%). Leverage means broader market moved ~${(chgPct/1.25).toFixed(1)}%.`);}
+      else if(up(3))msgs.push(`📈 HDIV up (+${chgPct.toFixed(1)}%). Leverage amplifying today's Canadian market gains.`);
+      if(gainPct!==null)msgs.push(`💡 Gain from cost $${cost.toFixed(2)}: ${gainPct>=0?'+':''}${gainPct.toFixed(1)}%`);
       break;
     }
   }
-
-  return { status, msgs, action, wt, drift, mv };
+  return{status,msgs,action,wt,mv};
 }
 
 // ═══════════════════════════════════════════════
-//  RENDER FUNCTIONS
+//  RENDER SUMMARY
 // ═══════════════════════════════════════════════
-function renderSummary(priceMap) {
-  const total = HOLDINGS.reduce((s,h) => s + (priceMap[h.ticker]?.cur || 0) * h.shares, 0);
-  const dayPnl = HOLDINGS.reduce((s,h) => s + (priceMap[h.ticker]?.chg || 0) * h.shares, 0);
-  const dayPct = dayPnl / (total - dayPnl) * 100;
-  const since = total - INCEPTION;
-  const sincePct = since / INCEPTION * 100;
-  const tfsa = (priceMap['XEQT.TO']?.cur || 0) * 490;
-  const rrsp = total - tfsa;
-  const buf = total - 100000;
+function renderSummary(pm){
+  const hTotal=HOLDINGS.reduce((s,h)=>s+(pm[h.ticker]?.cur||0)*h.shares,0);
+  const cashTotal=CASH.TFSA+CASH.RRSP;
+  const total=hTotal+cashTotal;
+  const dayPnl=HOLDINGS.reduce((s,h)=>s+(pm[h.ticker]?.chg||0)*h.shares,0);
+  const dayPct=dayPnl/(total-dayPnl)*100;
+  const since=total-INCEPTION,sincePct=since/INCEPTION*100;
+  const tfsa=(pm['XEQT.TO']?.cur||0)*490+CASH.TFSA;
+  const rrsp=total-tfsa,buf=total-100000;
 
-  document.getElementById('sumBar').style.display = 'block';
-  document.getElementById('sumGrid').innerHTML = `
-    <div class="sum-card">
-      <div class="sum-label">Portfolio Total</div>
-      <div class="sum-val">$${fmt0(total)}</div>
-      <div class="sum-sub">CAD</div>
-    </div>
-    <div class="sum-card">
-      <div class="sum-label">Today P&amp;L</div>
-      <div class="sum-val ${dayPnl>=0?'pos':'neg'}">${dayPnl>=0?'+':''}$${fmt0(Math.abs(dayPnl))}</div>
-      <div class="sum-sub ${dayPnl>=0?'pos':'neg'}">${dayPnl>=0?'+':''}${dayPct.toFixed(2)}%</div>
-    </div>
-    <div class="sum-card">
-      <div class="sum-label">Since Apr 22</div>
-      <div class="sum-val ${since>=0?'pos':'neg'}">${since>=0?'+':''}$${fmt0(Math.abs(since))}</div>
-      <div class="sum-sub ${since>=0?'pos':'neg'}">${since>=0?'+':''}${sincePct.toFixed(1)}%</div>
-    </div>
-    <div class="sum-card">
-      <div class="sum-label">TFSA</div>
-      <div class="sum-val">$${fmt0(tfsa)}</div>
-      <div class="sum-sub">XEQT · DRIP on</div>
-    </div>
-    <div class="sum-card">
-      <div class="sum-label">RRSP</div>
-      <div class="sum-val">$${fmt0(rrsp)}</div>
-      <div class="sum-sub">7 positions</div>
-    </div>
-    <div class="sum-card">
-      <div class="sum-label">Buffer &gt;$100k</div>
-      <div class="sum-val ${buf>=5000?'pos':buf>=0?'neu':'neg'}">$${fmt0(Math.abs(buf))}</div>
-      <div class="sum-sub">${buf>=0?'CIBC Tier 1 ✓':'⚠ Below threshold'}</div>
-    </div>
-  `;
+  document.getElementById('sumBar').style.display='block';
+  document.getElementById('sumGrid').innerHTML=`
+    <div class="sum-card"><div class="s-lbl">Portfolio Total</div><div class="s-val">$${f0(total)}</div><div class="s-sub">CAD incl. cash</div></div>
+    <div class="sum-card"><div class="s-lbl">Today P&amp;L</div><div class="s-val ${dayPnl>=0?'pos':'neg'}">${dayPnl>=0?'+':''}$${f0(Math.abs(dayPnl))}</div><div class="s-sub ${dayPnl>=0?'pos':'neg'}">${dayPnl>=0?'+':''}${dayPct.toFixed(2)}%</div></div>
+    <div class="sum-card"><div class="s-lbl">Since Apr 22</div><div class="s-val ${since>=0?'pos':'neg'}">${since>=0?'+':''}$${f0(Math.abs(since))}</div><div class="s-sub ${since>=0?'pos':'neg'}">${since>=0?'+':''}${sincePct.toFixed(1)}%</div></div>
+    <div class="sum-card"><div class="s-lbl">TFSA</div><div class="s-val">$${f0(tfsa)}</div><div class="s-sub">XEQT · DRIP on</div></div>
+    <div class="sum-card"><div class="s-lbl">RRSP</div><div class="s-val">$${f0(rrsp)}</div><div class="s-sub">7 positions</div></div>
+    <div class="sum-card"><div class="s-lbl">Buffer &gt;$100k</div><div class="s-val ${buf>=5000?'pos':buf>=0?'neu':'neg'}">$${f0(Math.abs(buf))}</div><div class="s-sub">${buf>=0?'CIBC Tier 1 ✓':'⚠ Below threshold'}</div></div>`;
+
+  document.getElementById('cashGrid').innerHTML=`
+    <div class="cash-card"><div class="s-lbl">TFSA Cash</div><div class="s-val" style="font-size:.9rem">$${CASH.TFSA.toFixed(2)}</div><div class="s-sub">Idle · No action</div></div>
+    <div class="cash-card"><div class="s-lbl">RRSP Cash</div><div class="s-val" style="font-size:.9rem">$${CASH.RRSP.toFixed(2)}</div><div class="s-sub">Accumulating divs</div></div>
+    <div class="cash-card"><div class="s-lbl">Total Cash</div><div class="s-val" style="font-size:.9rem">$${cashTotal.toFixed(2)}</div><div class="s-sub">${((cashTotal/total)*100).toFixed(1)}% of portfolio</div></div>
+    <div class="cash-card"><div class="s-lbl">Est. Annual Div.</div><div class="s-val pos" style="font-size:.9rem">~$2,045</div><div class="s-sub">All sheltered (TFSA+RRSP)</div></div>`;
+
   return total;
 }
 
-function renderCard(cfg, pd, total) {
-  const adv = advice(cfg, pd, total);
-  const { cur, chg, chgPct, state } = pd;
-  const sign = chg >= 0 ? '+' : '';
-  const cc = chg >= 0 ? 'pos' : 'neg';
-  const barW = Math.min((adv.wt / 30) * 100, 100).toFixed(1);
-  const barCls = adv.status === 'URGENT' ? 'wf-urg' : adv.status === 'WARN' ? 'wf-warn' : 'wf-ok';
-  const costRow = cfg.cost
-    ? `<div class="cost-row">Cost basis: $${cfg.cost.toFixed(2)} · MV: $${fmt0(adv.mv)} · ${adv.wt.toFixed(1)}% of portfolio</div>`
-    : `<div class="cost-row">MV: $${fmt0(adv.mv)} · ${adv.wt.toFixed(1)}% of portfolio</div>`;
+// ═══════════════════════════════════════════════
+//  RENDER CARD
+// ═══════════════════════════════════════════════
+function renderCard(cfg,pd,total,hist){
+  const adv=advice(cfg,pd,total);
+  const{cur,chg,chgPct,state}=pd;
+  const sign=chg>=0?'+':'',cc=chg>=0?'pos':'neg';
+  const cost=COST[cfg.ticker];
+  const gainPct=cost?((cur-cost)/cost*100):null;
+  const gCol=gainPct===null?'var(--muted)':gainPct>=0?'var(--green)':'var(--red)';
+  const gSign=gainPct!==null&&gainPct>=0?'+':'';
+  const barMax=30;
+  const barW=Math.min((adv.wt/barMax)*100,100).toFixed(1);
+  const tgtW=Math.min((cfg.target/barMax)*100,100).toFixed(1);
+  const bCls=adv.status==='URGENT'?'wf-urg':adv.status==='WARN'?'wf-warn':'wf-ok';
 
-  return `
-  <div class="h-card s-${adv.status}">
+  return`<div class="h-card s-${adv.status}">
     <div class="h-top">
-      <div>
-        <div class="h-ticker">${cfg.short}</div>
-        <div class="h-name">${cfg.name}</div>
-      </div>
+      <div><div class="h-ticker">${cfg.short}</div><div class="h-name">${cfg.name}</div></div>
       <div class="badges">
         <span class="badge b-${cfg.account.toLowerCase()}">${cfg.account}</span>
         <span class="badge b-${adv.status}">${adv.status}</span>
@@ -673,217 +603,237 @@ function renderCard(cfg, pd, total) {
     </div>
     <div class="h-meta">
       <span>${cfg.shares} shares</span>
-      <span style="color:var(--muted2);font-size:0.62rem">${state}</span>
+      <span>MV $${f0(adv.mv)}</span>
+      <span style="color:var(--muted2);font-size:.59rem">${state}</span>
     </div>
-    <div class="wbar-wrap">
-      <div class="wbar-lbl"><span>Weight ${adv.wt.toFixed(1)}%</span><span>Target ${cfg.target}%</span></div>
-      <div class="wbar"><div class="wbar-fill ${barCls}" style="width:${barW}%"></div></div>
+    <div class="hbar-wrap">
+      <div class="hbar-lbl">
+        <span>Weight <strong style="color:var(--text)">${adv.wt.toFixed(1)}%</strong> (target ${cfg.target}%)</span>
+        <span style="color:${gCol}">${gainPct!==null?`$${cost.toFixed(2)} → ${gSign}${gainPct.toFixed(1)}%`:''}</span>
+      </div>
+      <div class="hbar">
+        <div class="hbar-fill ${bCls}" style="width:${barW}%"></div>
+        <div class="hbar-target" style="left:${tgtW}%"></div>
+      </div>
     </div>
-    <div class="advice">${adv.msgs.map(m => `<p>${m}</p>`).join('')}</div>
-    ${adv.action ? `<div class="action-tag">▶ ${adv.action}</div>` : ''}
-    ${costRow}
+    ${divCard(cfg.ticker,cur,cfg.shares)}
+    <div class="advice">${adv.msgs.map(m=>`<p>${m}</p>`).join('')}</div>
+    ${adv.action?`<div class="action-tag">▶ ${adv.action}</div>`:''}
+    <div class="cost-row">
+      <span>Cost: $${cost?.toFixed(2)??'N/A'}</span>
+      <span>$${adv.mv.toFixed(2)} MV</span>
+      <span>${adv.wt.toFixed(1)}% of portfolio</span>
+    </div>
+    ${sparkline(hist)}
   </div>`;
 }
 
 // ═══════════════════════════════════════════════
-//  AI ADVISORS
+//  AI — CORE CALL
 // ═══════════════════════════════════════════════
-const SYS_GORDON = `You are Gordon, a sharp, friendly, no-fluff Canadian portfolio advisor for Germ (Louis-David Germain).
-
-PORTFOLIO: ~$108k CAD, CIBC TFSA + RRSP. Restructured Apr 22 2026.
-GOAL: General wealth building, 5–15 year horizon, moderate-aggressive (75/25 equity/bonds).
-TARGETS: XEQT 19.6%, XSP 27.6%, XEF 18.5%, XRB 10.6%, XIC 7.1%, ZAG 6.2%, XEC 5.5%, CAE 5%.
-RULES: Trim XEQT>25% of total. CAE trailing stop ~10% below high. XRB trim if <$21. CAE max 7%. Rebalance via contributions. Annual review November.
-ACCOUNTS: TFSA = tax-free (DRIP on XEQT). RRSP = tax-deferred.
-
-FORMAT: One punchy opening sentence. 3–4 bullet observations (concise). One action recommendation. Sign off "— Gordon".`;
-
-const SYS_SIGMA = `You are Sigma, a quant analyst. You have ZERO knowledge of investor goals, risk profile, or strategy.
-You only see raw price history.
-
-Given 7–8 days of closing prices per ticker, produce:
-- One intro sentence (data-only perspective, no personal tone)
-- A markdown bullet point with these elements: Ticker, Trend, 5-day Predicted Range, Confidence (Low/Med/High).
-- Portfolio Momentum Score: 0-100 (50=neutral)
-- Two specific risk flags based purely on the price data
-
-Be numerical, concise, emotionless. No investment advice. Use bullet points (not tables). Sign off "— Sigma".`;
-
-async function callAI(key, sys, usr) {
-  const r = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {'Content-Type':'application/json','Authorization':`Bearer ${key}`},
-    body: JSON.stringify({
-      model: 'gpt-4o-mini',
-      messages: [{role:'system',content:sys},{role:'user',content:usr}],
-      max_tokens: 600, temperature: 0.7
-    })
+async function callAI(key,model,sys,usr,temperature){
+  const body={model,messages:[{role:'system',content:sys},{role:'user',content:usr}],max_completion_tokens:700};
+  if(temperature!==undefined)body.temperature=temperature;
+  const r=await fetch('https://api.openai.com/v1/chat/completions',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':`Bearer ${key}`},
+    body:JSON.stringify(body)
   });
-  if (!r.ok) { const e = await r.json(); throw new Error(e.error?.message || `HTTP ${r.status}`); }
-  const d = await r.json();
+  if(!r.ok){const e=await r.json();throw new Error(e.error?.message||`HTTP ${r.status}`);}
+  const d=await r.json();
   return d.choices[0].message.content;
 }
 
 // ═══════════════════════════════════════════════
-//  MAIN REFRESH
+//  AI — SYSTEM PROMPTS
 // ═══════════════════════════════════════════════
-async function doRefresh() {
-  const key = document.getElementById('apiKey').value.trim();
-  const btn = document.getElementById('refreshBtn');
-  btn.disabled = true; btn.textContent = '⏳ Loading...';
+const SYS_G=`You are Gordon, a direct, experienced Canadian portfolio advisor for Germ (Louis-David Germain) and Hebba Antar.
 
-  document.getElementById('tfsaGrid').innerHTML = '<div class="placeholder"><div class="spin"></div> Fetching live prices...</div>';
-  document.getElementById('rrspGrid').innerHTML = '';
-  document.getElementById('gordonBody').innerHTML = '<div class="adv-loading"><div class="spin"></div> Gordon is analyzing your portfolio...</div>';
-  document.getElementById('sigmaBody').innerHTML = '<div class="adv-loading"><div class="spin"></div> Sigma is crunching numbers...</div>';
+PORTFOLIO: ~$108k CAD, CIBC TFSA + RRSP. Restructured Apr 22 2026.
+GOAL: General wealth building, 5–15 year horizon, moderate-aggressive (75/25 equity/bonds).
+TARGETS: XEQT 19.6%, XSP 27.6%, XEF 18.5%, XRB 10.6%, XIC 7.1%, ZAG 6.2%, XEC 5.5%, HDIV 4.6%.
+DIVIDENDS: XEQT/XSP/XEF/XIC/XEC quarterly (Mar/Jun/Sep/Dec ~20th). XRB/ZAG/HDIV monthly (~20th-28th).
+RULES: Trim XEQT>25% total. XRB trim if <$21. HDIV has GTC floor stop at $18.50. Rebalance via contributions. November annual review. CAE was sold May 22 via trailing stop at $33.41.
+ACCOUNTS: TFSA = tax-free (DRIP on XEQT). RRSP = tax-deferred.
+FORMAT: One punchy opening sentence. 4 concise bullet points. One clear action. Sign off "— Gordon".`;
 
-  try {
-    // Fetch prices (throttled)
-    const pm = {};
-    let failCount = 0;
-    for (const h of HOLDINGS) {
-      await delay(350);
-      try { pm[h.ticker] = await fetchTicker(h.ticker); }
-      catch(e) {
-        console.warn(h.ticker, e.message);
-        pm[h.ticker] = {ticker:h.ticker,cur:0,prev:0,chg:0,chgPct:0,state:'ERR',hist:[]};
-        failCount++;
-      }
-    }
+const SYS_S=`You are Sigma, a quantitative analyst with ZERO knowledge of investor goals, risk, or strategy. You only see raw price data.
 
-    // If all failed, show manual panel
-    if (failCount === HOLDINGS.length) {
-      showManualPanel();
-      document.getElementById('tfsaGrid').innerHTML =
-        `<div class="placeholder" style="color:var(--amber)">
-          ⚠ All price fetches failed.<br><br>
-          <strong>Two options:</strong><br>
-          1. Enter prices manually in the yellow panel above<br>
-          2. Host on <a href="https://pages.github.com" target="_blank" style="color:var(--blue)">GitHub Pages</a> for live auto-fetch
-        </div>`;
-      btn.disabled = false; btn.textContent = '↻  Refresh';
-      return;
-    }
+For each ticker provide exactly 3 bullets:
+• Trend: direction, % move, momentum quality over the period
+• Signal: mean-reverting, trending, or choppy? Notable statistical pattern?
+• Prediction: directional bias for next 5 trading days with rough % range
 
-    // Partial failure: hide manual panel, continue with available data
-    if (failCount > 0) hideManualPanel();
-    else hideManualPanel();
+Then:
+• Portfolio Momentum Score: X/100 — one-line explanation
+• Risk Flag 1: specific pattern from data
+• Risk Flag 2: specific pattern from data
 
-    // Total
-    const total = renderSummary(pm);
+Concise, numerical, no investment advice, no strategy, data only.`;
 
-    // Render cards
-    const tfsa = HOLDINGS.filter(h => h.account==='TFSA').map(h => renderCard(h, pm[h.ticker], total)).join('');
-    const rrsp = HOLDINGS.filter(h => h.account==='RRSP').map(h => renderCard(h, pm[h.ticker], total)).join('');
-    document.getElementById('tfsaGrid').innerHTML = tfsa;
-    document.getElementById('rrspGrid').innerHTML = rrsp;
-
-    // Market state
-    const states = Object.values(pm).map(p => p.state);
-    const open = states.includes('REGULAR');
-    document.getElementById('mktBadge').innerHTML = open
-      ? `<span class="mk-open"><span class="pulse"></span>Market Open (TSX)</span>`
-      : `<span class="mk-closed">● Market Closed</span>`;
-    document.getElementById('refreshTime').textContent = `Updated: ${new Date().toLocaleTimeString('en-CA')}`;
-
-    // AI Advisors
-    if (key) {
-      const snap = HOLDINGS.map(h => {
-        const p = pm[h.ticker];
-        const mv = (p.cur * h.shares).toFixed(0);
-        const wt = ((p.cur * h.shares / total) * 100).toFixed(1);
-        return `${h.short}: $${p.cur.toFixed(2)} (${p.chgPct >= 0 ? '+' : ''}${p.chgPct.toFixed(2)}% today), MV $${mv}, weight ${wt}%`;
-      }).join('\n');
-
-      const gordonPrompt = `Portfolio snapshot — Total: $${total.toFixed(0)} CAD (inception: $${INCEPTION.toFixed(0)}, since: ${((total-INCEPTION)/INCEPTION*100).toFixed(1)}%):\n${snap}\n\nGive me your daily assessment, Gordon.`;
-
-      const hist = HOLDINGS.map(h => {
-        const p = pm[h.ticker];
-        const closes = p.hist.map(c => `$${c.toFixed(2)}`).join(', ');
-        return `${h.short}: [${closes}] → current $${p.cur.toFixed(2)}`;
-      }).join('\n');
-
-      const sigmaPrompt = `Last 7–8 trading day closing prices:\n${hist}\n\nProvide your quantitative analysis and next-week prediction.`;
-
-      const [g, s] = await Promise.allSettled([
-        callAI(key, SYS_GORDON, gordonPrompt),
-        callAI(key, SYS_SIGMA, sigmaPrompt)
-      ]);
-
-      document.getElementById('gordonBody').textContent =
-        g.status === 'fulfilled' ? g.value : `Gordon unavailable: ${g.reason?.message}`;
-      document.getElementById('sigmaBody').textContent =
-        s.status === 'fulfilled' ? s.value : `Sigma unavailable: ${s.reason?.message}`;
-    } else {
-      document.getElementById('gordonBody').textContent = 'Enter your OpenAI API key to activate Gordon.';
-      document.getElementById('sigmaBody').textContent = 'Enter your OpenAI API key to activate Sigma.';
-    }
-
-  } catch(e) {
-    console.error(e);
-    document.getElementById('tfsaGrid').innerHTML = `<div class="placeholder" style="color:var(--red)">Error: ${e.message}</div>`;
-  }
-
-  btn.disabled = false; btn.textContent = '↻  Refresh';
+// ═══════════════════════════════════════════════
+//  AI — PROMPT BUILDERS
+// ═══════════════════════════════════════════════
+function buildGordonPrompt(pm,total){
+  const snap=HOLDINGS.map(h=>{
+    const p=pm[h.ticker],di=DIV[h.ticker];
+    const mv=(p.cur*h.shares).toFixed(0),wt=((p.cur*h.shares/total)*100).toFixed(1);
+    const nd=di?nextDiv(di):null;
+    const pps=di?divPerPmt(di,p.cur).toFixed(4):'N/A';
+    return`${h.short}: $${p.cur.toFixed(2)} (${p.chgPct>=0?'+':''}${p.chgPct.toFixed(2)}% today), $${mv} MV, ${wt}% | Next div: ${nd?fmtD(nd):'TBD'} ~$${pps}/share`;
+  }).join('\n');
+  return`Portfolio — Total: $${total.toFixed(0)} CAD (incl. $${(CASH.TFSA+CASH.RRSP).toFixed(2)} cash) | Inception: $${INCEPTION} | Gain: ${((total-INCEPTION)/INCEPTION*100).toFixed(1)}%\n\n${snap}\n\nEst. annual div income: ~$2,536 CAD (HDIV adds ~$492/yr at ~10% yield)\n\nYour daily assessment, Gordon.`;
+}
+function buildSigmaPrompt(pm){
+  return`Last 7–8 trading days of closing prices:\n${HOLDINGS.map(h=>{const p=pm[h.ticker];const cl=(p.hist||[]).map(c=>`$${c.toFixed(2)}`).join(', ');return`${h.short}: [${cl}] → now $${p.cur.toFixed(2)}`;}).join('\n')}\n\nBullet-point analysis and next-week prediction per ticker.`;
 }
 
-function toggleAuto() {
-  const btn = document.getElementById('autoBtn');
-  if (isAuto) {
-    clearInterval(autoTimer); isAuto = false;
-    btn.textContent = 'Auto: OFF'; btn.classList.remove('active');
-  } else {
-    doRefresh();
-    autoTimer = setInterval(doRefresh, 60000);
-    isAuto = true;
-    btn.textContent = 'Auto: ON (60s)'; btn.classList.add('active');
+// ═══════════════════════════════════════════════
+//  INDIVIDUAL ADVISOR REFRESH
+// ═══════════════════════════════════════════════
+async function refreshGordon(){
+  const key=document.getElementById('apiKey').value.trim();
+  if(!key){alert('Enter API key first.');return;}
+  if(!lastPm){alert('Load portfolio data first (Refresh All).');return;}
+  const btn=document.getElementById('gordonRefBtn');
+  btn.disabled=true;btn.textContent='⏳';
+  document.getElementById('gordonBody').innerHTML='<div class="adv-loading"><div class="spin"></div>&nbsp;Gordon is analyzing...</div>';
+  try{
+    const text=await callAI(key,MODEL_GORDON,SYS_G,buildGordonPrompt(lastPm,lastTotal),undefined);
+    document.getElementById('gordonBody').innerHTML=renderMd(text);
+  }catch(e){
+    document.getElementById('gordonBody').textContent=`Gordon unavailable: ${e.message}`;
   }
+  btn.disabled=false;btn.textContent='↻';
 }
 
-// ── Manual price fallback ─────────────────────
-function buildManualInputs() {
-  const container = document.getElementById('manualInputs');
-  container.innerHTML = HOLDINGS.map(h => `
+async function refreshSigma(){
+  const key=document.getElementById('apiKey').value.trim();
+  if(!key){alert('Enter API key first.');return;}
+  if(!lastPm){alert('Load portfolio data first (Refresh All).');return;}
+  const btn=document.getElementById('sigmaRefBtn');
+  btn.disabled=true;btn.textContent='⏳';
+  document.getElementById('sigmaBody').innerHTML='<div class="adv-loading"><div class="spin"></div>&nbsp;Sigma is crunching...</div>';
+  try{
+    const text=await callAI(key,MODEL_SIGMA,SYS_S,buildSigmaPrompt(lastPm),0.7);
+    document.getElementById('sigmaBody').innerHTML=text?renderMd(text):'<em style="color:var(--muted)">No response from Sigma.</em>';
+  }catch(e){
+    document.getElementById('sigmaBody').innerHTML=`<span style="color:var(--red)">Sigma error: ${e.message||JSON.stringify(e)}</span>`;
+  }
+  btn.disabled=false;btn.textContent='↻';
+}
+
+// ═══════════════════════════════════════════════
+//  MANUAL PANEL
+// ═══════════════════════════════════════════════
+function buildManual(){
+  document.getElementById('manualInputs').innerHTML=HOLDINGS.map(h=>`
     <div>
-      <div style="font-size:0.6rem;color:var(--muted);margin-bottom:3px">${h.short}</div>
-      <input type="number" step="0.01" id="mp_${h.short}"
-        placeholder="e.g. ${(h.cost || 43).toFixed(2)}"
-        style="width:100%;background:var(--bg);border:1px solid var(--border2);color:var(--text);
-               padding:5px 8px;border-radius:5px;font-size:0.75rem;font-family:'DM Mono'" />
+      <label>${h.short} <span style="color:var(--muted2)">(${h.account})</span></label>
+      <input type="number" step="0.01" id="mp_${h.short}" placeholder="${(COST[h.ticker]||43).toFixed(2)}"/>
     </div>`).join('');
 }
+function applyManual(){
+  let any=false;
+  for(const h of HOLDINGS){const v=parseFloat(document.getElementById(`mp_${h.short}`)?.value);if(!isNaN(v)&&v>0){manualPrices[h.ticker]=v;any=true;}}
+  if(any)doRefresh();else alert('Enter at least one price first.');
+}
+function showManual(){if(document.getElementById('manualPanel').style.display==='none'){document.getElementById('manualPanel').style.display='block';buildManual();}}
+function hideManual(){document.getElementById('manualPanel').style.display='none';}
 
-function applyManual() {
-  let anySet = false;
-  for (const h of HOLDINGS) {
-    const val = parseFloat(document.getElementById(`mp_${h.short}`)?.value);
-    if (!isNaN(val) && val > 0) { manualPrices[h.ticker] = val; anySet = true; }
+// ═══════════════════════════════════════════════
+//  MAIN REFRESH
+// ═══════════════════════════════════════════════
+async function doRefresh(){
+  const key=document.getElementById('apiKey').value.trim();
+  const btn=document.getElementById('refreshBtn');
+  btn.disabled=true;btn.textContent='⏳ Loading...';
+  document.getElementById('tfsaGrid').innerHTML='<div class="placeholder"><div class="spin"></div>&nbsp;Fetching live prices...</div>';
+  document.getElementById('rrspGrid').innerHTML='';
+  document.getElementById('gordonBody').innerHTML='<div class="adv-loading"><div class="spin"></div>&nbsp;Gordon is analyzing...</div>';
+  document.getElementById('sigmaBody').innerHTML='<div class="adv-loading"><div class="spin"></div>&nbsp;Sigma is crunching...</div>';
+
+  try{
+    const pm={};let fails=0;
+    for(const h of HOLDINGS){
+      await delay(360);
+      try{pm[h.ticker]=await fetchTicker(h.ticker);}
+      catch(e){console.warn(h.ticker,e.message);pm[h.ticker]={ticker:h.ticker,cur:0,prev:0,chg:0,chgPct:0,state:'ERR',hist:[]};fails++;}
+    }
+
+    if(fails===HOLDINGS.length){
+      showManual();
+      document.getElementById('tfsaGrid').innerHTML='<div class="placeholder" style="color:var(--amber)">⚠ All fetches failed. Enter prices manually above, or host on GitHub Pages.</div>';
+      btn.disabled=false;btn.textContent='↻ Refresh All';return;
+    }else hideManual();
+
+    // Save to localStorage
+    const hist=loadHist();
+    for(const h of HOLDINGS)if(pm[h.ticker]?.cur>0)addPt(hist,h.ticker,pm[h.ticker].cur);
+    saveHist(hist);
+
+    // Store in state for individual advisor refreshes
+    lastPm=pm;
+    lastTotal=renderSummary(pm);
+
+    // Market state
+    const open=Object.values(pm).some(p=>p.state==='REGULAR');
+    document.getElementById('mktBadge').innerHTML=open
+      ?`<span class="mko"><span class="pulse"></span>Market Open (TSX)</span>`
+      :`<span class="mkc">● Market Closed</span>`;
+    document.getElementById('refreshTime').textContent=`Updated: ${new Date().toLocaleTimeString('en-CA')}`;
+
+    // Render cards
+    document.getElementById('tfsaGrid').innerHTML=HOLDINGS.filter(h=>h.account==='TFSA').map(h=>renderCard(h,pm[h.ticker],lastTotal,hist[h.ticker]||[])).join('');
+    document.getElementById('rrspGrid').innerHTML=HOLDINGS.filter(h=>h.account==='RRSP').map(h=>renderCard(h,pm[h.ticker],lastTotal,hist[h.ticker]||[])).join('');
+
+    // AI advisors
+    if(key){
+      // Run Gordon first, then Sigma — sequential to avoid silent failures
+      document.getElementById('gordonBody').innerHTML='<div class="adv-loading"><div class="spin"></div>&nbsp;Gordon is thinking...</div>';
+      try{
+        const gText=await callAI(key,MODEL_GORDON,SYS_G,buildGordonPrompt(pm,lastTotal),undefined);
+        document.getElementById('gordonBody').innerHTML=gText?renderMd(gText):'<em style="color:var(--muted)">No response from Gordon.</em>';
+      }catch(e){
+        document.getElementById('gordonBody').innerHTML=`<span style="color:var(--red)">Gordon error: ${e.message||JSON.stringify(e)}</span>`;
+      }
+
+      document.getElementById('sigmaBody').innerHTML='<div class="adv-loading"><div class="spin"></div>&nbsp;Sigma is crunching...</div>';
+      try{
+        const sText=await callAI(key,MODEL_SIGMA,SYS_S,buildSigmaPrompt(pm),0.7);
+        document.getElementById('sigmaBody').innerHTML=sText?renderMd(sText):'<em style="color:var(--muted)">No response from Sigma.</em>';
+      }catch(e){
+        document.getElementById('sigmaBody').innerHTML=`<span style="color:var(--red)">Sigma error: ${e.message||JSON.stringify(e)}</span>`;
+      }
+    }else{
+      document.getElementById('gordonBody').textContent='Enter your OpenAI API key to activate Gordon.';
+      document.getElementById('sigmaBody').textContent='Enter your OpenAI API key to activate Sigma.';
+    }
+  }catch(e){
+    console.error(e);
+    document.getElementById('tfsaGrid').innerHTML=`<div class="placeholder" style="color:var(--red)">Error: ${e.message}</div>`;
   }
-  if (anySet) doRefresh();
-  else alert('Enter at least one price first.');
+  btn.disabled=false;btn.textContent='↻ Refresh All';
 }
 
-// ── Show/hide manual panel ────────────────────
-function showManualPanel() {
-  const panel = document.getElementById('manualPanel');
-  if (panel.style.display === 'none') {
-    panel.style.display = 'block';
-    buildManualInputs();
-  }
-}
-function hideManualPanel() {
-  document.getElementById('manualPanel').style.display = 'none';
+function toggleAuto(){
+  const btn=document.getElementById('autoBtn');
+  if(isAuto){clearInterval(autoTimer);isAuto=false;btn.textContent='Auto: OFF';btn.classList.remove('active');}
+  else{doRefresh();autoTimer=setInterval(doRefresh,60000);isAuto=true;btn.textContent='Auto: ON (60s)';btn.classList.add('active');}
 }
 
+// ═══════════════════════════════════════════════
+//  HELPERS
+// ═══════════════════════════════════════════════
+function f0(n){return Math.abs(n).toLocaleString('en-CA',{maximumFractionDigits:0})}
+function delay(ms){return new Promise(r=>setTimeout(r,ms))}
 
-function fmt0(n) { return Math.abs(n).toLocaleString('en-CA', {maximumFractionDigits:0}); }
-function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-// Session persistence (cleared when browser tab closes)
-const k = sessionStorage.getItem('gc_key');
-if (k) document.getElementById('apiKey').value = k;
-document.getElementById('apiKey').addEventListener('input', function() {
-  sessionStorage.setItem('gc_key', this.value);
+// API key — localStorage (persists across sessions)
+const saved=localStorage.getItem('gc_key');
+if(saved)document.getElementById('apiKey').value=saved;
+document.getElementById('apiKey').addEventListener('input',function(){
+  if(this.value.trim())localStorage.setItem('gc_key',this.value);
+  else localStorage.removeItem('gc_key');
 });
 </script>
 </body>
