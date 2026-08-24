@@ -988,6 +988,11 @@ const INPUT_KEYS = [
    loaded; any manual edit clears it so dynamic naming resumes.
    ================================================================ */
 const RECIPE_PRESETS = {
+  "42": {
+    ...EMPTY_STATE, label: "Recipe 42",
+    presetName: { name: "Recipe 42", tag: "Recipe #42. Whole-wheat kissed, yeast-free, 75% hyd.", mood: "rustic" },
+    bakerFlour: 290, wholeWheat: 70, water: 263, levain: 65, salt: 9,
+  },
   "67": {
     ...EMPTY_STATE, label: "Rye Sourdough #67",
     presetName: { name: "Rye Sourdough #67", tag: "Recipe #67. Tested, trusted, rye-kissed.", mood: "rustic" },
@@ -1040,6 +1045,7 @@ const RECIPE_PRESETS = {
 /* The order presets appear as buttons. Separate from the data so
    we can reorder without touching the recipes themselves. */
 const PRESET_ORDER = [
+  { id: "42", label: "#42" },
   { id: "67", label: "#67" },
   { id: "68", label: "#68" },
   { id: "70", label: "#70" },
